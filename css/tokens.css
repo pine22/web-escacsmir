@@ -1,0 +1,15 @@
+/* ── DESIGN TOKENS ── */
+:root {
+  --maroon:   #7B1010;
+  --maroon-d: #550C0C;
+  --gold:     #D4960A;
+  --gold-l:   #F0C040;
+  --cream:    #FAF3DC;
+  --cream-d:  #F0E4B8;
+  --dark:     #1A0A0A;
+  --white:    #FFFFFF;
+  --gray:     #F5F5F5;
+  --text:     #2C2C2C;
+  --radius:   12px;
+  --shadow:   0 4px 20px rgba(0,0,0,0.12);
+}

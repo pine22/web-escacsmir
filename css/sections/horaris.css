@@ -1,0 +1,50 @@
+/* ── HORARIS ── */
+.horaris {
+  padding: 5rem 1.5rem;
+  background: var(--white);
+}
+.horaris-header { text-align: center; margin-bottom: 3rem; }
+.horaris-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+.horaris-table thead tr { background: var(--maroon); color: var(--white); }
+.horaris-table th {
+  padding: 1rem 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .85rem;
+  font-weight: 700;
+  text-align: left;
+  letter-spacing: .05em;
+}
+.horaris-table td {
+  padding: .85rem 1.2rem;
+  font-size: .88rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+.horaris-table tr:nth-child(even) td { background: var(--cream); }
+.horaris-table tr:hover td { background: var(--cream-d); }
+.nivel-tag {
+  display: inline-block;
+  padding: .2rem .65rem;
+  border-radius: 50px;
+  font-size: .75rem;
+  font-weight: 700;
+}
+.tag-pre  { background: #FFDCC8; color: #C9531A; }
+.tag-ben  { background: #FFF0B8; color: #9A6200; }
+.tag-ale  { background: #FFDCDC; color: var(--maroon); }
+.tag-inf  { background: #E8D5FF; color: #5A1A7A; }
+.tag-club { background: #DCF0FF; color: #1A4A7A; }
+.note-box {
+  background: var(--cream);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1rem 1.2rem;
+  font-size: .88rem;
+  color: #555;
+}

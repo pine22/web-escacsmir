@@ -1,0 +1,79 @@
+/* ── FLOATING WHATSAPP ── */
+.whatsapp-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1000;
+  background: #25D366;
+  color: var(--white);
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform .2s;
+  text-decoration: none;
+}
+.whatsapp-float:hover { transform: scale(1.1); }
+
+/* ── COOKIE BANNER ── */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0; right: 0;
+  background: #1E1E1E;
+  color: rgba(255,255,255,0.85);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 2000;
+  flex-wrap: wrap;
+}
+.cookie-banner p { font-size: .83rem; margin: 0; }
+.cookie-banner a { color: var(--gold-l); }
+.cookie-buttons { display: flex; gap: .6rem; flex-shrink: 0; }
+.cookie-accept {
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  padding: .5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: .83rem;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+.cookie-decline {
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: .5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: .83rem;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ── ANNOTATION OVERLAY (PROPOSAL NOTES) ── */
+.proposal-note {
+  display: block;
+  margin: 2rem auto;
+  max-width: 900px;
+  background: #FFFBEA;
+  border: 2px dashed var(--gold);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.5rem;
+  font-size: .85rem;
+  color: #555;
+}
+.proposal-note strong { color: var(--maroon-d); font-family: 'Montserrat', sans-serif; }
+.proposal-note code {
+  background: #f0f0f0;
+  padding: .1rem .35rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: .82rem;
+}

@@ -1,0 +1,12 @@
+/* ── ANNOUNCEMENT BAR ── */
+.topbar {
+  background: var(--maroon-d);
+  color: var(--cream);
+  text-align: center;
+  font-size: .82rem;
+  padding: .5rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+.topbar span { color: var(--gold-l); }

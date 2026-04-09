@@ -1,0 +1,53 @@
+/* ── ESCOLA SECTION ── */
+.escola {
+  padding: 5rem 1.5rem;
+  background: var(--white);
+}
+.escola-header { text-align: center; margin-bottom: 3rem; }
+.escola-header .section-sub { margin: 0 auto; }
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.cat-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .2s;
+}
+.cat-card:hover { transform: translateY(-4px); }
+.cat-top {
+  padding: 1.5rem 1.5rem 1rem;
+  color: var(--white);
+  text-align: center;
+}
+.cat-icon { font-size: 2.5rem; margin-bottom: .5rem; }
+.cat-top h3 { font-size: 1.15rem; font-weight: 900; }
+.cat-top .age-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50px;
+  padding: .15rem .7rem;
+  font-size: .75rem;
+  font-weight: 700;
+  margin-top: .3rem;
+}
+.cat-body {
+  background: var(--cream);
+  padding: 1.2rem 1.5rem 1.5rem;
+}
+.cat-body ul { list-style: none; }
+.cat-body ul li {
+  padding: .3rem 0;
+  font-size: .88rem;
+  color: #444;
+  display: flex;
+  align-items: flex-start;
+  gap: .4rem;
+}
+.cat-body ul li::before { content: '♟'; color: var(--maroon); flex-shrink: 0; }
+.prebenjamin .cat-top { background: linear-gradient(135deg,#E07B39,#C9531A); }
+.benjamin     .cat-top { background: linear-gradient(135deg,#D4960A,#B07A06); }
+.alevi        .cat-top { background: linear-gradient(135deg,var(--maroon),#A01515); }
+.infantil     .cat-top { background: linear-gradient(135deg,#3D1C02,#6B3010); }
