@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beneficis dels Escacs · Club d'Escacs MiR</title>
+  <meta name="description" content="Descobreix els beneficis dels escacs: personal, social, intel·lectual i de salut. Club d'Escacs MiR · Montcada i Reixac." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout/nav.css" />
+  <link rel="stylesheet" href="css/layout/footer.css" />
+  <link rel="stylesheet" href="css/sections/overlays.css" />
+
+  <style>
+    .ben-hero {
+      background: var(--maroon);
+      color: white;
+      padding: 64px 0 52px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .ben-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-conic-gradient(
+        rgba(255,255,255,0.04) 0% 25%, transparent 0% 50%
+      ) 0 0 / 32px 32px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+      pointer-events: none;
+    }
+    .ben-hero .section-eyebrow { margin-bottom: 16px; }
+    .ben-hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.8em, 4vw, 2.8em);
+      font-weight: 900;
+      color: white;
+      margin-bottom: 14px;
+    }
+    .ben-hero p {
+      color: rgba(255,255,255,0.78);
+      max-width: 580px;
+      margin: 0 auto;
+      font-size: 1.05em;
+      line-height: 1.6;
+    }
+
+    .ben-page { padding: 64px 0 80px; background: var(--bg); }
+
+    .ben-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    @media (max-width: 700px) {
+      .ben-grid { grid-template-columns: 1fr; }
+    }
+
+    .ben-cat {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .ben-cat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--maroon);
+      color: white;
+      padding: 16px 22px;
+    }
+    .ben-cat-icon { font-size: 1.5em; line-height: 1; }
+    .ben-cat-header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.05em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: white;
+    }
+    .ben-cat-list {
+      list-style: none;
+      padding: 18px 22px;
+      background: var(--cream);
+      margin: 0;
+    }
+    .ben-cat-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(123,0,0,0.08);
+      font-size: 0.95em;
+      line-height: 1.45;
+    }
+    .ben-cat-list li:last-child { border-bottom: none; }
+    .ben-cat-list li::before {
+      content: '♟';
+      color: var(--maroon);
+      font-size: 0.85em;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .ben-contact {
+      margin-top: 48px;
+      background: var(--maroon);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .ben-contact-text {
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+    .ben-contact-text p { color: rgba(255,255,255,0.75); font-size: 0.9em; margin-top: 4px; font-family: 'Open Sans', sans-serif; font-weight: 400; }
+    .ben-contact-links { display: flex; gap: 16px; flex-wrap: wrap; }
+    .ben-contact-links a {
+      color: var(--gold);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1em;
+    }
+    .ben-contact-links a:hover { color: var(--gold-l); }
+  </style>
+</head>
+<body class="lang-ca">
+
+<!-- ── NAV ── -->
+<nav id="main-nav">
+  <div class="nav-inner container">
+    <a href="index.html#inici" class="nav-logo">
+      <img src="assets/Logo MIR CLUB.png" alt="Club d'Escacs MiR" />
+      <span class="nav-logo-text">
+        <span class="ca">Club d'Escacs MiR</span>
+        <span class="es">Club Ajedrez MiR</span>
+      </span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#escola"><span class="ca">Escola</span><span class="es">Escuela</span></a></li>
+      <li><a href="index.html#eines"><span class="ca">Eines</span><span class="es">Herramientas</span></a></li>
+      <li><a href="index.html#competicio"><span class="ca">Club</span><span class="es">Club</span></a></li>
+      <li><a href="beneficis.html" class="nav-active"><span class="ca">Beneficis</span><span class="es">Beneficios</span></a></li>
+      <li><a href="index.html#horaris"><span class="ca">Horaris</span><span class="es">Horarios</span></a></li>
+      <li><a href="index.html#contacte"><span class="ca">Contacte</span><span class="es">Contacto</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ca">CA</button>
+        <span>|</span>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <a href="index.html#contacte" class="btn btn-maroon nav-cta">
+        <span class="ca">Inscriu-te</span>
+        <span class="es">Inscríbete</span>
+      </a>
+      <button class="nav-hamburger" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div class="nav-mobile" role="dialog" aria-label="Menú">
+  <ul>
+    <li><a href="index.html#escola"><span class="ca">Escola</span><span class="es">Escuela</span></a></li>
+    <li><a href="index.html#eines"><span class="ca">Eines</span><span class="es">Herramientas</span></a></li>
+    <li><a href="index.html#competicio"><span class="ca">Club competitiu</span><span class="es">Club competitivo</span></a></li>
+    <li><a href="beneficis.html"><span class="ca">Beneficis</span><span class="es">Beneficios</span></a></li>
+    <li><a href="index.html#horaris"><span class="ca">Horaris</span><span class="es">Horarios</span></a></li>
+    <li><a href="index.html#contacte"><span class="ca">Contacte</span><span class="es">Contacto</span></a></li>
+  </ul>
+  <a href="index.html#contacte" class="btn btn-maroon">
+    <span class="ca">Inscriu-te al club</span>
+    <span class="es">Inscríbete al club</span>
+  </a>
+  <div class="lang-toggle" style="margin-top:1rem;">
+    <button class="lang-btn active" data-lang="ca">CA</button>
+    <span>|</span>
+    <button class="lang-btn" data-lang="es">ES</button>
+  </div>
+</div>
+
+
+<!-- ── HERO ── -->
+<div class="ben-hero">
+  <div class="container">
+    <div class="section-eyebrow">
+      <span class="ca">🧠 Per què els escacs?</span>
+      <span class="es">🧠 ¿Por qué el ajedrez?</span>
+    </div>
+    <h1>
+      <span class="ca">Els Beneficis dels Escacs</span>
+      <span class="es">Los Beneficios del Ajedrez</span>
+    </h1>
+    <p>
+      <span class="ca">Els escacs no són tan sols un esport: són una eina de creixement personal, social i intel·lectual demostrada científicament.</span>
+      <span class="es">El ajedrez no es solo un deporte: es una herramienta de crecimiento personal, social e intelectual demostrada científicamente.</span>
+    </p>
+  </div>
+</div>
+
+
+<!-- ── CONTINGUT ── -->
+<section class="ben-page">
+  <div class="container">
+    <div class="ben-grid">
+
+      <!-- PERSONAL -->
+      <div class="ben-cat">
+        <div class="ben-cat-header">
+          <span class="ben-cat-icon">♟</span>
+          <h2><span class="ca">Personal</span><span class="es">Personal</span></h2>
+        </div>
+        <ul class="ben-cat-list">
+          <li><span class="ca">Millora la creativitat</span><span class="es">Mejora la creatividad</span></li>
+          <li><span class="ca">Augmenta el poder de presa de decisions</span><span class="es">Aumenta el poder de toma de decisiones</span></li>
+          <li><span class="ca">Millora el pensament crític</span><span class="es">Mejora el pensamiento crítico</span></li>
+          <li><span class="ca">Millora la capacitat ètica</span><span class="es">Mejora la capacidad ética</span></li>
+          <li><span class="ca">Millora l'àrea competitiva i motivacional</span><span class="es">Mejora el área competitiva y motivacional</span></li>
+        </ul>
+      </div>
+
+      <!-- SOCIAL I ESPORTIU -->
+      <div class="ben-cat">
+        <div class="ben-cat-header">
+          <span class="ben-cat-icon">🤝</span>
+          <h2><span class="ca">Social i Esportiu</span><span class="es">Social y Deportivo</span></h2>
+        </div>
+        <ul class="ben-cat-list">
+          <li><span class="ca">Ajuda a forjar el caràcter</span><span class="es">Ayuda a forjar el carácter</span></li>
+          <li><span class="ca">Ajuda a acostumar-se a la idea de la victòria i la derrota</span><span class="es">Ayuda a acostumbrarse a la idea de la victoria y la derrota</span></li>
+          <li><span class="ca">Potència el component lúdic de l'esport</span><span class="es">Potencia el componente lúdico del deporte</span></li>
+          <li><span class="ca">El respecte a l'adversari</span><span class="es">El respeto al adversario</span></li>
+          <li><span class="ca">El respecte a les regles</span><span class="es">El respeto a las reglas</span></li>
+          <li><span class="ca">L'acceptació del resultat</span><span class="es">La aceptación del resultado</span></li>
+          <li><span class="ca">La comprensió cap al perdedor</span><span class="es">La comprensión hacia el perdedor</span></li>
+          <li><span class="ca">L'esforç</span><span class="es">El esfuerzo</span></li>
+          <li><span class="ca">L'honestedat</span><span class="es">La honestidad</span></li>
+          <li><span class="ca">La responsabilitat</span><span class="es">La responsabilidad</span></li>
+          <li><span class="ca">La confiança</span><span class="es">La confianza</span></li>
+          <li><span class="ca">L'afany de superació</span><span class="es">El afán de superación</span></li>
+          <li><span class="ca">L'amistat</span><span class="es">La amistad</span></li>
+        </ul>
+      </div>
+
+      <!-- INTEL·LECTUAL -->
+      <div class="ben-cat">
+        <div class="ben-cat-header">
+          <span class="ben-cat-icon">🧠</span>
+          <h2><span class="ca">Intel·lectual</span><span class="es">Intelectual</span></h2>
+        </div>
+        <ul class="ben-cat-list">
+          <li><span class="ca">Millora la concentració</span><span class="es">Mejora la concentración</span></li>
+          <li><span class="ca">Potència el raonament lògic</span><span class="es">Potencia el razonamiento lógico</span></li>
+          <li><span class="ca">Augmenta el coeficient intel·lectual</span><span class="es">Aumenta el coeficiente intelectual</span></li>
+          <li><span class="ca">Potència la memòria</span><span class="es">Potencia la memoria</span></li>
+        </ul>
+      </div>
+
+      <!-- SALUT -->
+      <div class="ben-cat">
+        <div class="ben-cat-header">
+          <span class="ben-cat-icon">❤️</span>
+          <h2><span class="ca">Salut</span><span class="es">Salud</span></h2>
+        </div>
+        <ul class="ben-cat-list">
+          <li><span class="ca">Prevenció de malalties cerebrals degeneratives</span><span class="es">Prevención de enfermedades cerebrales degenerativas</span></li>
+          <li><span class="ca">Exercita tots dos hemisferis cerebrals</span><span class="es">Ejercita los dos hemisferios cerebrales</span></li>
+          <li><span class="ca">Actua contra la depressió</span><span class="es">Actúa contra la depresión</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- CONTACTE -->
+    <div class="ben-contact">
+      <div class="ben-contact-text">
+        <strong><span class="ca">Vols que el teu fill/a comenci?</span><span class="es">¿Quieres que tu hijo/a empiece?</span></strong>
+        <p><span class="ca">Contacta'ns i t'informem sense compromís.</span><span class="es">Contáctanos y te informamos sin compromiso.</span></p>
+      </div>
+      <div class="ben-contact-links">
+        <a href="mailto:escacsmir@gmail.com">✉ escacsmir@gmail.com</a>
+        <a href="https://wa.me/34627833133">💬 627 83 31 33</a>
+        <a href="index.html#contacte" class="btn btn-outline" style="padding: 8px 20px; border-radius: 6px; border: 2px solid var(--gold); color: var(--gold);">
+          <span class="ca">Inscriu-te</span><span class="es">Inscríbete</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/Logo MIR CLUB.png" alt="Club d'Escacs MiR" class="footer-logo" />
+        <span class="footer-name">Club d'Escacs MiR</span>
+        <p>
+          <span class="ca">Escola d'escacs i club competitiu. Formem jugadors, però sobretot persones.</span>
+          <span class="es">Escuela de ajedrez y club competitivo. Formamos jugadores, pero sobre todo personas.</span>
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4><span class="ca">Escola</span><span class="es">Escuela</span></h4>
+        <ul>
+          <li><a href="index.html#escola"><span class="ca">Pre-Benjamí</span><span class="es">Pre-Benjamín</span></a></li>
+          <li><a href="index.html#escola"><span class="ca">Benjamí</span><span class="es">Benjamín</span></a></li>
+          <li><a href="index.html#escola"><span class="ca">Aleví</span><span class="es">Alevín</span></a></li>
+          <li><a href="index.html#escola"><span class="ca">Infantil</span><span class="es">Infantil</span></a></li>
+          <li><a href="index.html#contacte"><span class="ca">Inscripció</span><span class="es">Inscripción</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="ca">Club</span><span class="es">Club</span></h4>
+        <ul>
+          <li><a href="index.html#competicio"><span class="ca">Equips</span><span class="es">Equipos</span></a></li>
+          <li><a href="index.html#horaris"><span class="ca">Horaris</span><span class="es">Horarios</span></a></li>
+          <li><a href="beneficis.html"><span class="ca">Beneficis</span><span class="es">Beneficios</span></a></li>
+          <li><a href="index.html#eines"><span class="ca">Eines</span><span class="es">Herramientas</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4><span class="ca">Contacte</span><span class="es">Contacto</span></h4>
+        <ul>
+          <li><a href="mailto:escacsmir@gmail.com">escacsmir@gmail.com</a></li>
+          <li><a href="tel:+34627833133">627 83 31 33</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Club d'Escacs MiR · <span class="ca">Tots els drets reservats</span><span class="es">Todos los derechos reservados</span></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/34627833133" class="whatsapp-float" target="_blank" rel="noopener" title="WhatsApp">💬</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>
