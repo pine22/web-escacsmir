@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Circuit Català 2026 – Club d'Escacs MiR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #F9F9F7; }
+
+    .tool-nav {
+      background: #7B0000;
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .tool-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .tool-back {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .8rem;
+      letter-spacing: .04em;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      transition: color .15s;
+    }
+    .tool-back:hover { color: #F5C842; }
+    .tool-nav-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: .9rem;
+      color: #fff;
+    }
+    .tool-club {
+      font-family: 'Montserrat', sans-serif;
+      font-size: .75rem;
+      color: rgba(255,255,255,0.55);
+      font-weight: 600;
+    }
+
+    .tool-frame {
+      width: 100%;
+      height: calc(100vh - 52px);
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="tool-nav">
+  <div class="tool-nav-left">
+    <a href="../index.html#eines" class="tool-back">← Tornar / Volver</a>
+    <span style="color:rgba(255,255,255,0.2);">|</span>
+    <span class="tool-nav-title">Circuit Català 2026</span>
+  </div>
+  <span class="tool-club">Club d'Escacs MiR</span>
+</nav>
+
+<iframe
+  class="tool-frame"
+  src="../assets/html_eines/circuit_catala_2026_v4.html"
+  title="Circuit Català 2026 – Club d'Escacs MiR"
+  loading="lazy"
+></iframe>
+
+</body>
+</html>

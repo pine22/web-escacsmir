@@ -1,8 +1,9 @@
-/* ── NOTÍCIES / NEWS ── */
+/* ── NOTICIES ── */
 .noticies {
-  padding: 5rem 1.5rem;
-  background: var(--white);
+  padding: var(--sec-py) 0;
+  background: var(--bg);
 }
+
 .noticies-header {
   display: flex;
   align-items: flex-end;
@@ -11,39 +12,68 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+
 .news-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
+
 .news-card {
-  border-radius: var(--radius);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  box-shadow: var(--shadow-s);
+  transition: transform .2s, box-shadow .2s;
+}
+.news-card:hover {
+  transform: translateY(-3px);
   box-shadow: var(--shadow);
-  transition: transform .2s;
 }
-.news-card:hover { transform: translateY(-3px); }
+
 .news-thumb {
-  height: 140px;
-  background: linear-gradient(135deg, var(--maroon), #C03030);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 3.5rem;
-  color: rgba(255,255,255,0.3);
+  height: 130px;
+  background: var(--maroon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: rgba(255,255,255,0.18);
 }
-.news-body { padding: 1.2rem 1.3rem; background: var(--white); }
+
+.news-body {
+  padding: 1.2rem 1.4rem 1.5rem;
+}
 .news-tag {
   display: inline-block;
-  background: var(--cream-d);
+  background: var(--cream);
   color: var(--maroon);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: .72rem;
-  letter-spacing: .08em;
-  padding: .15rem .6rem;
-  border-radius: 50px;
-  margin-bottom: .5rem;
+  font-size: .68rem;
+  letter-spacing: .1em;
   text-transform: uppercase;
+  padding: .2rem .65rem;
+  border-radius: 50px;
+  margin-bottom: .6rem;
 }
-.news-body h4 { font-size: .97rem; font-weight: 700; margin-bottom: .4rem; }
-.news-body p  { font-size: .83rem; color: #666; margin-bottom: .8rem; }
-.news-body a  { font-size: .82rem; color: var(--maroon); font-weight: 700; }
+.news-body h4 {
+  font-size: .95rem;
+  font-weight: 700;
+  margin-bottom: .4rem;
+  line-height: 1.35;
+}
+.news-body p {
+  font-size: .84rem;
+  color: var(--text-m);
+  margin-bottom: .9rem;
+  line-height: 1.55;
+}
+.news-body a {
+  font-size: .82rem;
+  color: var(--maroon);
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+}
+.news-body a:hover { text-decoration: underline; }

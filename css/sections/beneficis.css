@@ -1,46 +1,64 @@
 /* ── BENEFICIS ── */
 .beneficis {
-  padding: 5rem 1.5rem;
-  background: var(--gray);
+  padding: var(--sec-py) 0;
+  background: var(--bg);
 }
-.beneficis-header { text-align: center; margin-bottom: 3rem; }
+
+.beneficis-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.beneficis-header .section-sub { margin: 0 auto; }
+
 .beneficis-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
 }
+
 .ben-card {
   background: var(--white);
-  border-radius: var(--radius);
-  padding: 1.8rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow-s);
+  transition: transform .2s, box-shadow .2s;
+}
+.ben-card:hover {
+  transform: translateY(-3px);
   box-shadow: var(--shadow);
 }
-.ben-icon-wrap {
-  width: 52px; height: 52px;
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem;
+
+.ben-icon {
+  font-size: 2rem;
   margin-bottom: 1rem;
+  display: block;
 }
+
 .ben-card h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: .75rem;
+  font-size: .88rem;
+  font-weight: 800;
   color: var(--maroon);
   text-transform: uppercase;
-  letter-spacing: .06em;
+  letter-spacing: .08em;
+  margin-bottom: .9rem;
 }
-.ben-card ul { list-style: none; }
+
+.ben-card ul {}
 .ben-card ul li {
-  font-size: .87rem;
-  color: #444;
-  padding: .25rem 0;
-  border-bottom: 1px solid #f0f0f0;
-  display: flex; gap: .4rem;
+  font-size: .85rem;
+  color: var(--text-m);
+  padding: .3rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: .5rem;
+  align-items: flex-start;
 }
 .ben-card ul li:last-child { border-bottom: none; }
-.ben-card ul li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
-.ben-personal  .ben-icon-wrap { background: #FFF0DC; }
-.ben-social    .ben-icon-wrap { background: #FFDCDC; }
-.ben-intel     .ben-icon-wrap { background: #DCF0FF; }
-.ben-salut     .ben-icon-wrap { background: #DCFFE8; }
+.ben-card ul li::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 700;
+  font-size: .85rem;
+  flex-shrink: 0;
+}

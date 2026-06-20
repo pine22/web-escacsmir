@@ -1,15 +1,31 @@
 /* ── DESIGN TOKENS ── */
 :root {
-  --maroon:   #7B1010;
-  --maroon-d: #550C0C;
-  --gold:     #D4960A;
-  --gold-l:   #F0C040;
-  --cream:    #FAF3DC;
-  --cream-d:  #F0E4B8;
-  --dark:     #1A0A0A;
-  --white:    #FFFFFF;
-  --gray:     #F5F5F5;
-  --text:     #2C2C2C;
-  --radius:   12px;
-  --shadow:   0 4px 20px rgba(0,0,0,0.12);
+  /* Brand colours (Manual d'identitat MiR) */
+  --maroon:    #7B0000;
+  --maroon-d:  #5A0000;
+  --maroon-l:  #9A0000;
+  --gold:      #E8A600;
+  --gold-l:    #F5C842;
+  --cream:     #FFF4C7;
+  --cream-d:   #F0E49A;
+
+  /* Neutrals */
+  --dark:      #1A1A1A;
+  --white:     #FFFFFF;
+  --bg:        #F9F9F7;
+  --text:      #1A1A1A;
+  --text-m:    #5C5C5C;
+  --border:    #E5E5E3;
+
+  /* Shape & elevation */
+  --radius:    10px;
+  --radius-lg: 16px;
+  --shadow-s:  0 1px 4px rgba(0,0,0,0.07);
+  --shadow:    0 4px 16px rgba(0,0,0,0.09);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+
+  /* Layout */
+  --nav-h:  64px;
+  --max-w: 1100px;
+  --sec-py: 80px;
 }

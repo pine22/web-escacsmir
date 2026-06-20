@@ -3,689 +3,898 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Club d'Escacs MiR – Escola d'Escacs i Club Competitiu</title>
-  <meta name="description" content="Club d'Escacs MiR: escola d'escacs per a nens de totes les edats i club competitiu. Aprèn, creix i competeix amb nosaltres." />
+  <title>Club d'Escacs MiR – Escola i Club Competitiu · Montcada i Reixac</title>
+  <meta name="description" content="Club d'Escacs MiR: escola d'escacs per a nens de totes les edats i club competitiu federat. Aprèn, creix i competeix amb nosaltres a Montcada i Reixac." />
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- Design tokens primer, sempre -->
+  <!-- CSS: tokens first, always -->
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/components.css" />
 
   <!-- Layout -->
-  <link rel="stylesheet" href="css/layout/topbar.css" />
   <link rel="stylesheet" href="css/layout/nav.css" />
   <link rel="stylesheet" href="css/layout/footer.css" />
 
-  <!-- Seccions -->
+  <!-- Sections -->
   <link rel="stylesheet" href="css/sections/hero.css" />
   <link rel="stylesheet" href="css/sections/escola.css" />
+  <link rel="stylesheet" href="css/sections/eines.css" />
   <link rel="stylesheet" href="css/sections/competicio.css" />
   <link rel="stylesheet" href="css/sections/beneficis.css" />
   <link rel="stylesheet" href="css/sections/horaris.css" />
   <link rel="stylesheet" href="css/sections/noticies.css" />
-  <link rel="stylesheet" href="css/sections/inscripcio.css" />
+  <link rel="stylesheet" href="css/sections/newsletter.css" />
+  <link rel="stylesheet" href="css/sections/contacte.css" />
   <link rel="stylesheet" href="css/sections/overlays.css" />
 </head>
-<body>
-
-<!-- ── ANNOUNCEMENT BAR ── -->
-<div class="topbar">
-  🏆 Inscripcions obertes per al curs 2024–2025 &nbsp;|&nbsp;
-  <span>Torneig intern de primavera – 15 d'abril</span> &nbsp;·&nbsp;
-  <a href="#inscripcio" style="color:var(--gold-l);text-decoration:underline;">Apunta't ara</a>
-</div>
+<body class="lang-ca">
 
 <!-- ── NAVIGATION ── -->
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logo">
-      <div class="logo-badge">♞</div>
-      <span>Escacs MiR</span>
-    </div>
+<nav id="main-nav">
+  <div class="nav-inner container">
+
+    <a href="#inici" class="nav-logo">
+      <img src="assets/Logo MIR CLUB.png" alt="Club d'Escacs MiR" />
+      <span class="nav-logo-text">
+        <span class="ca">Club d'Escacs MiR</span>
+        <span class="es">Club Ajedrez MiR</span>
+      </span>
+    </a>
+
     <ul class="nav-links">
-      <li><a href="#escola">Escola</a></li>
-      <li><a href="#competicio">Club</a></li>
-      <li><a href="#beneficis">Beneficis</a></li>
-      <li><a href="#horaris">Horaris</a></li>
-      <li><a href="#noticies">Notícies</a></li>
-      <li><a href="#inscripcio">Contacte</a></li>
+      <li><a href="#escola"><span class="ca">Escola</span><span class="es">Escuela</span></a></li>
+      <li><a href="#eines"><span class="ca">Eines</span><span class="es">Herramientas</span></a></li>
+      <li><a href="#competicio"><span class="ca">Club</span><span class="es">Club</span></a></li>
+      <li><a href="#horaris"><span class="ca">Horaris</span><span class="es">Horarios</span></a></li>
+      <li><a href="#noticies"><span class="ca">Notícies</span><span class="es">Noticias</span></a></li>
+      <li><a href="#contacte"><span class="ca">Contacte</span><span class="es">Contacto</span></a></li>
     </ul>
-    <a href="#inscripcio" class="btn btn-primary nav-cta">Inscriu-te</a>
+
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="ca">CA</button>
+        <span>|</span>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+      <a href="#contacte" class="btn btn-maroon nav-cta">
+        <span class="ca">Inscriu-te</span>
+        <span class="es">Inscríbete</span>
+      </a>
+      <button class="nav-hamburger" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
   </div>
 </nav>
 
+<!-- ── MOBILE MENU ── -->
+<div class="nav-mobile" role="dialog" aria-label="Menú">
+  <ul>
+    <li><a href="#escola"><span class="ca">Escola</span><span class="es">Escuela</span></a></li>
+    <li><a href="#eines"><span class="ca">Eines</span><span class="es">Herramientas</span></a></li>
+    <li><a href="#competicio"><span class="ca">Club competitiu</span><span class="es">Club competitivo</span></a></li>
+    <li><a href="#horaris"><span class="ca">Horaris</span><span class="es">Horarios</span></a></li>
+    <li><a href="#noticies"><span class="ca">Notícies</span><span class="es">Noticias</span></a></li>
+    <li><a href="#contacte"><span class="ca">Contacte</span><span class="es">Contacto</span></a></li>
+  </ul>
+  <a href="#contacte" class="btn btn-maroon">
+    <span class="ca">Inscriu-te al club</span>
+    <span class="es">Inscríbete al club</span>
+  </a>
+  <div class="lang-toggle" style="margin-top:1rem;">
+    <button class="lang-btn active" data-lang="ca">CA</button>
+    <span>|</span>
+    <button class="lang-btn" data-lang="es">ES</button>
+  </div>
+</div>
+
+
 <!-- ── HERO ── -->
 <section class="hero" id="inici">
-  <div class="hero-inner">
+  <div class="hero-inner container">
+
     <div class="hero-content">
-      <div class="hero-eyebrow">Club d'Escacs MiR · escacsmir.com</div>
-      <h1>Aprèn, Creix i <em>Competeix</em> amb els Escacs</h1>
-      <p>
-        Escola d'escacs per a nens i nenes de totes les edats, des de pre-benjamins fins a infantils.
-        Entrenaments, torneigs i una gran comunitat a la teva disposició.
+      <div class="hero-eyebrow">
+        <span class="ca">Club d'Escacs MiR · Montcada i Reixac</span>
+        <span class="es">Club Ajedrez MiR · Montcada i Reixac</span>
+      </div>
+      <h1>
+        <span class="ca">Aprèn, Creix i <em>Competeix</em> amb els Escacs</span>
+        <span class="es">Aprende, Crece y <em>Compite</em> con el Ajedrez</span>
+      </h1>
+      <p class="hero-lead">
+        <span class="ca">Escola d'escacs per a nens i nenes de totes les edats, des de pre-benjamins fins a infantils. Entrenaments, torneigs i una gran comunitat.</span>
+        <span class="es">Escuela de ajedrez para niños y niñas de todas las edades, desde pre-benjamines hasta infantiles. Entrenamientos, torneos y una gran comunidad.</span>
       </p>
       <div class="hero-buttons">
-        <a href="#escola"    class="btn btn-primary">🎓 Escola d'Escacs</a>
-        <a href="#inscripcio" class="btn btn-outline">✉ Contacta'ns</a>
+        <a href="#escola" class="btn btn-primary">
+          <span class="ca">🎓 L'escola</span>
+          <span class="es">🎓 La escuela</span>
+        </a>
+        <a href="#contacte" class="btn btn-outline">
+          <span class="ca">✉ Contacta'ns</span>
+          <span class="es">✉ Contáctanos</span>
+        </a>
       </div>
       <div class="hero-stats">
         <div class="stat-item">
           <span class="stat-num">+80</span>
-          <span class="stat-label">Alumnes</span>
+          <span class="stat-label"><span class="ca">Alumnes</span><span class="es">Alumnos</span></span>
         </div>
         <div class="stat-item">
           <span class="stat-num">4</span>
-          <span class="stat-label">Nivells</span>
+          <span class="stat-label"><span class="ca">Nivells</span><span class="es">Niveles</span></span>
         </div>
         <div class="stat-item">
           <span class="stat-num">+15</span>
-          <span class="stat-label">Torneigs / any</span>
+          <span class="stat-label"><span class="ca">Torneigs/any</span><span class="es">Torneos/año</span></span>
         </div>
         <div class="stat-item">
           <span class="stat-num">10+</span>
-          <span class="stat-label">Anys d'experiència</span>
+          <span class="stat-label"><span class="ca">Anys</span><span class="es">Años</span></span>
         </div>
       </div>
     </div>
+
     <div class="hero-visual">
-      <div class="hero-card">
-        <div class="icon">👶</div>
-        <div>
-          <h4>Pre-Benjamins</h4>
-          <p>Menors de 8 anys · Joc, descobriment i primeres estratègies</p>
-        </div>
-      </div>
-      <div class="hero-card">
-        <div class="icon">🧒</div>
-        <div>
-          <h4>Benjamins i Aleví</h4>
-          <p>8 a 11 anys · Tàctiques, obertures i primers torneigs</p>
-        </div>
-      </div>
-      <div class="hero-card">
-        <div class="icon">🏆</div>
-        <div>
-          <h4>Infantils</h4>
-          <p>Fins a 15 anys · Anàlisi avançada i competició federada</p>
-        </div>
-      </div>
-      <div class="hero-card">
-        <div class="icon">♟</div>
-        <div>
-          <h4>Club Competitiu</h4>
-          <p>Jugadors adults · Lliga, torneigs i entrenaments específics</p>
-        </div>
-      </div>
+      <img class="hero-logo" src="assets/Logo MIR CLUB.png" alt="Escut del Club d'Escacs MiR" />
+      <p class="hero-tagline">
+        <span class="ca">Escola d'Escacs · Club Competitiu</span>
+        <span class="es">Escuela de Ajedrez · Club Competitivo</span>
+      </p>
     </div>
+
   </div>
 </section>
 
-<span class="proposal-note">
-  <strong>📌 Nota de disseny – Hero:</strong>
-  Substituir les xifres (alumnes, torneigs, anys) per les dades reals del club.
-  Afegir una foto real de partides o un tauler en una columna lateral per a pantalles grans.
-</span>
 
 <!-- ── ESCOLA ── -->
 <section class="escola" id="escola">
   <div class="container">
     <div class="escola-header">
-      <div class="section-label">🎓 Escola d'Escacs</div>
-      <h2 class="section-title">Un programa adaptat a cada edat</h2>
+      <div class="section-eyebrow">
+        <span class="ca">🎓 Escola d'Escacs</span>
+        <span class="es">🎓 Escuela de Ajedrez</span>
+      </div>
+      <h2 class="section-title">
+        <span class="ca">Un programa adaptat a cada edat</span>
+        <span class="es">Un programa adaptado a cada edad</span>
+      </h2>
       <p class="section-sub">
-        Des dels primers moviments fins a la competició federada, tenim un grup per a cada jugador.
-        Metodologia pedagògica progressiva i entrenadors titulats.
+        <span class="ca">Des dels primers moviments fins a la competició federada, tenim un grup per a cada jugador. Metodologia pedagògica progressiva i entrenadors titulats.</span>
+        <span class="es">Desde los primeros movimientos hasta la competición federada, tenemos un grupo para cada jugador. Metodología pedagógica progresiva y entrenadores titulados.</span>
       </p>
     </div>
 
     <div class="categories-grid">
+
       <!-- PRE-BENJAMÍ -->
       <div class="cat-card prebenjamin">
+        <div class="cat-accent"></div>
         <div class="cat-top">
           <div class="cat-icon">🐣</div>
-          <h3>Pre-Benjamí</h3>
-          <span class="age-badge">Menys de 8 anys</span>
+          <div class="cat-info">
+            <h3><span class="ca">Pre-Benjamí</span><span class="es">Pre-Benjamín</span></h3>
+            <span class="age-badge"><span class="ca">Menys de 8 anys</span><span class="es">Menos de 8 años</span></span>
+          </div>
         </div>
         <div class="cat-body">
           <ul>
-            <li>Moviment de les peces de manera lúdica</li>
-            <li>Joc cooperatiu i primer escac i mat</li>
-            <li>Exercicis amb tauler gegant</li>
-            <li>Contes i activitats temàtiques</li>
-            <li>Participació en torneig intern</li>
+            <li><span class="ca">Moviment de les peces de manera lúdica</span><span class="es">Movimiento de las piezas de forma lúdica</span></li>
+            <li><span class="ca">Joc cooperatiu i primer escac i mat</span><span class="es">Juego cooperativo y primer jaque mate</span></li>
+            <li><span class="ca">Exercicis amb tauler gegant</span><span class="es">Ejercicios con tablero gigante</span></li>
+            <li><span class="ca">Contes i activitats temàtiques</span><span class="es">Cuentos y actividades temáticas</span></li>
+            <li><span class="ca">Participació en torneig intern</span><span class="es">Participación en torneo interno</span></li>
           </ul>
         </div>
       </div>
 
       <!-- BENJAMÍ -->
       <div class="cat-card benjamin">
+        <div class="cat-accent"></div>
         <div class="cat-top">
           <div class="cat-icon">⭐</div>
-          <h3>Benjamí</h3>
-          <span class="age-badge">8 – 9 anys</span>
+          <div class="cat-info">
+            <h3><span class="ca">Benjamí</span><span class="es">Benjamín</span></h3>
+            <span class="age-badge">8 – 9 <span class="ca">anys</span><span class="es">años</span></span>
+          </div>
         </div>
         <div class="cat-body">
           <ul>
-            <li>Tàctiques bàsiques: forqueta, clau, enfilada</li>
-            <li>Obertures: primeres pautes</li>
-            <li>Joc pràctic cronometrat</li>
-            <li>Primer contacte amb competició externa</li>
-            <li>Anàlisi de partides pròpies</li>
+            <li><span class="ca">Tàctiques bàsiques: forqueta, clau, enfilada</span><span class="es">Tácticas básicas: horquilla, clavada, ensartada</span></li>
+            <li><span class="ca">Obertures: primeres pautes</span><span class="es">Aperturas: primeras pautas</span></li>
+            <li><span class="ca">Joc pràctic cronometrat</span><span class="es">Juego práctico cronometrado</span></li>
+            <li><span class="ca">Primer contacte amb competició externa</span><span class="es">Primer contacto con competición externa</span></li>
+            <li><span class="ca">Anàlisi de partides pròpies</span><span class="es">Análisis de partidas propias</span></li>
           </ul>
         </div>
       </div>
 
       <!-- ALEVÍ -->
       <div class="cat-card alevi">
+        <div class="cat-accent"></div>
         <div class="cat-top">
           <div class="cat-icon">🎯</div>
-          <h3>Aleví</h3>
-          <span class="age-badge">10 – 11 anys</span>
+          <div class="cat-info">
+            <h3><span class="ca">Aleví</span><span class="es">Alevín</span></h3>
+            <span class="age-badge">10 – 11 <span class="ca">anys</span><span class="es">años</span></span>
+          </div>
         </div>
         <div class="cat-body">
           <ul>
-            <li>Tàctiques intermèdies i combinacions</li>
-            <li>Estudi de finals bàsics</li>
-            <li>Lliga escolar i torneigs federats</li>
-            <li>Introducció al programari d'anàlisi</li>
-            <li>Preparació psicològica i competitiva</li>
+            <li><span class="ca">Tàctiques intermèdies i combinacions</span><span class="es">Tácticas intermedias y combinaciones</span></li>
+            <li><span class="ca">Estudi de finals bàsics</span><span class="es">Estudio de finales básicos</span></li>
+            <li><span class="ca">Lliga escolar i torneigs federats</span><span class="es">Liga escolar y torneos federados</span></li>
+            <li><span class="ca">Introducció al programari d'anàlisi</span><span class="es">Introducción al software de análisis</span></li>
+            <li><span class="ca">Preparació psicològica i competitiva</span><span class="es">Preparación psicológica y competitiva</span></li>
           </ul>
         </div>
       </div>
 
       <!-- INFANTIL -->
       <div class="cat-card infantil">
+        <div class="cat-accent"></div>
         <div class="cat-top">
           <div class="cat-icon">🏅</div>
-          <h3>Infantil</h3>
-          <span class="age-badge">Fins a 15 anys</span>
+          <div class="cat-info">
+            <h3><span class="ca">Infantil</span><span class="es">Infantil</span></h3>
+            <span class="age-badge"><span class="ca">Fins a 15 anys</span><span class="es">Hasta 15 años</span></span>
+          </div>
         </div>
         <div class="cat-body">
           <ul>
-            <li>Anàlisi avançada amb Stockfish/Lichess</li>
-            <li>Estudi d'obertures personalitzat</li>
-            <li>Campionats autonòmics i nacionals</li>
-            <li>Partides comentades en grup</li>
-            <li>Preparació per a l'ELO federatiu</li>
+            <li><span class="ca">Anàlisi avançada amb Stockfish/Lichess</span><span class="es">Análisis avanzado con Stockfish/Lichess</span></li>
+            <li><span class="ca">Estudi d'obertures personalitzat</span><span class="es">Estudio de aperturas personalizado</span></li>
+            <li><span class="ca">Campionats autonòmics i nacionals</span><span class="es">Campeonatos autonómicos y nacionales</span></li>
+            <li><span class="ca">Partides comentades en grup</span><span class="es">Partidas comentadas en grupo</span></li>
+            <li><span class="ca">Preparació per a l'ELO federatiu</span><span class="es">Preparación para el ELO federativo</span></li>
           </ul>
         </div>
       </div>
+
     </div>
 
-    <div style="text-align:center;margin-top:2.5rem;">
-      <a href="#inscripcio" class="btn btn-maroon">Inscriu el teu fill/a →</a>
+    <div class="escola-cta">
+      <a href="#contacte" class="btn btn-maroon">
+        <span class="ca">Inscriu el teu fill/a →</span>
+        <span class="es">Inscribe a tu hijo/a →</span>
+      </a>
     </div>
   </div>
 </section>
+
+
+<!-- ── EINES (TOOLS) ── -->
+<section class="eines" id="eines">
+  <div class="container">
+    <div class="eines-header">
+      <div class="section-eyebrow">
+        <span class="ca">🛠 Eines per als jugadors</span>
+        <span class="es">🛠 Herramientas para jugadores</span>
+      </div>
+      <h2 class="section-title">
+        <span class="ca">Recursos per millorar el teu joc</span>
+        <span class="es">Recursos para mejorar tu juego</span>
+      </h2>
+      <p class="section-sub">
+        <span class="ca">Eines exclusives del club per als alumnes de l'escola i membres del club competitiu.</span>
+        <span class="es">Herramientas exclusivas del club para alumnos de la escuela y miembros del club competitivo.</span>
+      </p>
+    </div>
+
+    <div class="eines-grid">
+
+      <!-- Calculadora ELO -->
+      <div class="eina-card">
+        <div class="eina-icon">📊</div>
+        <h3>
+          <span class="ca">Calculadora ELO</span>
+          <span class="es">Calculadora ELO</span>
+        </h3>
+        <p>
+          <span class="ca">Calcula la variació del teu ELO FIDE i nacional en funció dels resultats d'un torneig. Ideal per preparar-te per a la competició federada.</span>
+          <span class="es">Calcula la variación de tu ELO FIDE y nacional según los resultados de un torneo. Ideal para prepararte para la competición federada.</span>
+        </p>
+        <a href="eines/elo.html" class="btn btn-outline-dark btn-sm">
+          <span class="ca">Obrir eina →</span>
+          <span class="es">Abrir herramienta →</span>
+        </a>
+      </div>
+
+      <!-- Circuit Català -->
+      <div class="eina-card">
+        <div class="eina-icon">🏆</div>
+        <h3>
+          <span class="ca">Circuit Català 2026</span>
+          <span class="es">Circuit Català 2026</span>
+        </h3>
+        <p>
+          <span class="ca">Consulta els torneigs i resultats del Circuit Català d'Escacs 2026. Classifica't, filtra per categoria i segueix l'evolució dels jugadors del club.</span>
+          <span class="es">Consulta los torneos y resultados del Circuit Català d'Escacs 2026. Clasifícate, filtra por categoría y sigue la evolución de los jugadores del club.</span>
+        </p>
+        <a href="eines/circuit.html" class="btn btn-outline-dark btn-sm">
+          <span class="ca">Obrir eina →</span>
+          <span class="es">Abrir herramienta →</span>
+        </a>
+      </div>
+
+      <!-- Calendari de Tornejos -->
+      <div class="eina-card">
+        <div class="eina-icon">📅</div>
+        <h3>
+          <span class="ca">Calendari de Tornejos 2026–2027</span>
+          <span class="es">Calendario de Torneos 2026–2027</span>
+        </h3>
+        <p>
+          <span class="ca">Consulta tots els tornejos de la temporada 2026–2027: dates, llocs, categories i resultats del Club d'Escacs MiR.</span>
+          <span class="es">Consulta todos los torneos de la temporada 2026–2027: fechas, lugares, categorías y resultados del Club Ajedrez MiR.</span>
+        </p>
+        <a href="eines/calendari.html" class="btn btn-outline-dark btn-sm">
+          <span class="ca">Obrir eina →</span>
+          <span class="es">Abrir herramienta →</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
 <!-- ── COMPETICIÓ ── -->
 <section class="competicio" id="competicio">
   <div class="container">
     <div class="competicio-inner">
+
       <div>
-        <div class="section-label">♟ Club Competitiu</div>
-        <h2 class="section-title">Per als jugadors que volen competir</h2>
+        <div class="section-eyebrow">
+          <span class="ca">♟ Club Competitiu</span>
+          <span class="es">♟ Club Competitivo</span>
+        </div>
+        <h2 class="section-title">
+          <span class="ca">Per als jugadors que volen competir</span>
+          <span class="es">Para los jugadores que quieren competir</span>
+        </h2>
         <p class="section-sub">
-          El Club d'Escacs MiR participa en lligues federades catalanes i organitza torneigs
-          oberts al llarg de l'any. Tots els nivells de joc, des d'ELO 1000 fins a avançats.
+          <span class="ca">El Club d'Escacs MiR participa en lligues federades catalanes i organitza torneigs oberts al llarg de l'any. Tots els nivells, des d'ELO 1000 fins a avançats.</span>
+          <span class="es">El Club Ajedrez MiR participa en ligas federadas catalanas y organiza torneos abiertos durante todo el año. Todos los niveles, desde ELO 1000 hasta avanzados.</span>
         </p>
 
-        <div class="competicio-features">
+        <div class="feat-list">
           <div class="feat-item">
-            <div class="feat-icon">🏆</div>
+            <span class="feat-icon">🏆</span>
             <div>
-              <h4>Lliga per equips</h4>
-              <p>Participació en divisions de la Federació Catalana d'Escacs</p>
+              <h4><span class="ca">Lliga per equips</span><span class="es">Liga por equipos</span></h4>
+              <p><span class="ca">Participació en divisions de la Federació Catalana d'Escacs</span><span class="es">Participación en divisiones de la Federació Catalana d'Escacs</span></p>
             </div>
           </div>
           <div class="feat-item">
-            <div class="feat-icon">📅</div>
+            <span class="feat-icon">📅</span>
             <div>
-              <h4>Torneigs oberts</h4>
-              <p>Torneigs interns mensuals i oberts trimestrals amb premis</p>
+              <h4><span class="ca">Torneigs oberts</span><span class="es">Torneos abiertos</span></h4>
+              <p><span class="ca">Torneigs interns mensuals i oberts trimestrals amb premis</span><span class="es">Torneos internos mensuales y abiertos trimestrales con premios</span></p>
             </div>
           </div>
           <div class="feat-item">
-            <div class="feat-icon">💻</div>
+            <span class="feat-icon">💻</span>
             <div>
-              <h4>Escacs en línia</h4>
-              <p>Club a Lichess.org i Chess.com per jugar des de casa</p>
+              <h4><span class="ca">Escacs en línia</span><span class="es">Ajedrez en línea</span></h4>
+              <p><span class="ca">Club a Lichess.org i Chess.com per jugar des de casa</span><span class="es">Club en Lichess.org y Chess.com para jugar desde casa</span></p>
             </div>
           </div>
           <div class="feat-item">
-            <div class="feat-icon">📊</div>
+            <span class="feat-icon">📊</span>
             <div>
-              <h4>Seguiment ELO</h4>
-              <p>Registre federatiu i evolució de l'ELO FIDE i nacional</p>
+              <h4><span class="ca">Seguiment ELO</span><span class="es">Seguimiento ELO</span></h4>
+              <p><span class="ca">Registre federatiu i evolució de l'ELO FIDE i nacional</span><span class="es">Registro federativo y evolución del ELO FIDE y nacional</span></p>
             </div>
           </div>
         </div>
 
-        <a href="#inscripcio" class="btn btn-primary" style="margin-top:2rem;">Uneix-te al club</a>
+        <a href="#contacte" class="btn btn-primary" style="margin-top:2rem;">
+          <span class="ca">Uneix-te al club</span>
+          <span class="es">Únete al club</span>
+        </a>
       </div>
 
-      <div class="competicio-visual">
+      <div class="comp-stats">
         <div class="comp-badge">
-          <span class="num">1ª</span>
-          <span class="lbl">Divisió Catalana<br>(Equip A)</span>
+          <span class="comp-num">1ª</span>
+          <span class="comp-lbl"><span class="ca">Divisió Catalana<br>(Equip A)</span><span class="es">División Catalana<br>(Equipo A)</span></span>
         </div>
         <div class="comp-badge">
-          <span class="num">🥇</span>
-          <span class="lbl">Campions<br>Torneig Local 2024</span>
+          <span class="comp-num">🥇</span>
+          <span class="comp-lbl"><span class="ca">Campions<br>Torneig Local 2024</span><span class="es">Campeones<br>Torneo Local 2024</span></span>
         </div>
         <div class="comp-badge">
-          <span class="num">+40</span>
-          <span class="lbl">Jugadors<br>Federats</span>
+          <span class="comp-num">+40</span>
+          <span class="comp-lbl"><span class="ca">Jugadors<br>Federats</span><span class="es">Jugadores<br>Federados</span></span>
         </div>
         <div class="comp-badge">
-          <span class="num">12</span>
-          <span class="lbl">Torneigs<br>per any</span>
+          <span class="comp-num">12</span>
+          <span class="comp-lbl"><span class="ca">Torneigs<br>per any</span><span class="es">Torneos<br>por año</span></span>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<span class="proposal-note">
-  <strong>📌 Nota – Secció Club:</strong>
-  Substituir les xifres i division per les dades reals. Afegir logotip de la Federació Catalana d'Escacs si s'és club federat.
-</span>
 
 <!-- ── BENEFICIS ── -->
 <section class="beneficis" id="beneficis">
   <div class="container">
     <div class="beneficis-header">
-      <div class="section-label">🧠 Per què els escacs?</div>
-      <h2 class="section-title">Els beneficis dels escacs</h2>
-      <p class="section-sub" style="margin:0 auto;">
-        L'ajedrez no és tan sols un esport: és una eina de creixement personal, social i intel·lectual demostrada científicament.
+      <div class="section-eyebrow">
+        <span class="ca">🧠 Per què els escacs?</span>
+        <span class="es">🧠 ¿Por qué el ajedrez?</span>
+      </div>
+      <h2 class="section-title">
+        <span class="ca">Els beneficis dels escacs</span>
+        <span class="es">Los beneficios del ajedrez</span>
+      </h2>
+      <p class="section-sub">
+        <span class="ca">Els escacs no són tan sols un esport: són una eina de creixement personal, social i intel·lectual demostrada científicament.</span>
+        <span class="es">El ajedrez no es solo un deporte: es una herramienta de crecimiento personal, social e intelectual demostrada científicamente.</span>
       </p>
     </div>
 
     <div class="beneficis-grid">
-      <div class="ben-card ben-personal">
-        <div class="ben-icon-wrap">🌟</div>
-        <h3>Personal</h3>
+
+      <div class="ben-card">
+        <span class="ben-icon">🌟</span>
+        <h3><span class="ca">Personal</span><span class="es">Personal</span></h3>
         <ul>
-          <li>Millora la creativitat</li>
-          <li>Augmenta el poder de presa de decisions</li>
-          <li>Millora el pensament crític</li>
-          <li>Millora la capacitat ètica</li>
-          <li>Millora l'àrea competitiva i motivacional</li>
+          <li><span class="ca">Millora la creativitat</span><span class="es">Mejora la creatividad</span></li>
+          <li><span class="ca">Millora la presa de decisions</span><span class="es">Mejora la toma de decisiones</span></li>
+          <li><span class="ca">Potencia el pensament crític</span><span class="es">Potencia el pensamiento crítico</span></li>
+          <li><span class="ca">Millora la capacitat ètica</span><span class="es">Mejora la capacidad ética</span></li>
+          <li><span class="ca">Reforça la motivació</span><span class="es">Refuerza la motivación</span></li>
         </ul>
       </div>
 
-      <div class="ben-card ben-social">
-        <div class="ben-icon-wrap">🤝</div>
-        <h3>Social i Esportiu</h3>
+      <div class="ben-card">
+        <span class="ben-icon">🤝</span>
+        <h3><span class="ca">Social i Esportiu</span><span class="es">Social y Deportivo</span></h3>
         <ul>
-          <li>Ajuda a forjar el caràcter</li>
-          <li>Acceptació de la victòria i la derrota</li>
-          <li>Respecte a l'adversari i a les regles</li>
-          <li>L'honestedat i la responsabilitat</li>
-          <li>La confiança i l'amistat</li>
-          <li>L'afany de superació</li>
+          <li><span class="ca">Ajuda a forjar el caràcter</span><span class="es">Ayuda a forjar el carácter</span></li>
+          <li><span class="ca">Acceptació de la victòria i la derrota</span><span class="es">Aceptación de la victoria y la derrota</span></li>
+          <li><span class="ca">Respecte a l'adversari</span><span class="es">Respeto al adversario</span></li>
+          <li><span class="ca">Honestedat i responsabilitat</span><span class="es">Honestidad y responsabilidad</span></li>
+          <li><span class="ca">Confiança i amistat</span><span class="es">Confianza y amistad</span></li>
         </ul>
       </div>
 
-      <div class="ben-card ben-intel">
-        <div class="ben-icon-wrap">🧠</div>
-        <h3>Intel·lectual</h3>
+      <div class="ben-card">
+        <span class="ben-icon">🧠</span>
+        <h3><span class="ca">Intel·lectual</span><span class="es">Intelectual</span></h3>
         <ul>
-          <li>Millora la concentració</li>
-          <li>Potència el raonament lògic</li>
-          <li>Augmenta el coeficient intel·lectual</li>
-          <li>Potència la memòria</li>
+          <li><span class="ca">Millora la concentració</span><span class="es">Mejora la concentración</span></li>
+          <li><span class="ca">Potencia el raonament lògic</span><span class="es">Potencia el razonamiento lógico</span></li>
+          <li><span class="ca">Augmenta el coeficient intel·lectual</span><span class="es">Aumenta el coeficiente intelectual</span></li>
+          <li><span class="ca">Potencia la memòria</span><span class="es">Potencia la memoria</span></li>
         </ul>
       </div>
 
-      <div class="ben-card ben-salut">
-        <div class="ben-icon-wrap">❤️</div>
-        <h3>Salut</h3>
+      <div class="ben-card">
+        <span class="ben-icon">❤️</span>
+        <h3><span class="ca">Salut</span><span class="es">Salud</span></h3>
         <ul>
-          <li>Prevenció de malalties cerebrals degeneratives</li>
-          <li>Exercita tots dos hemisferis cerebrals</li>
-          <li>Actua contra la depressió</li>
+          <li><span class="ca">Prevenció de malalties cerebrals degeneratives</span><span class="es">Prevención de enfermedades cerebrales degenerativas</span></li>
+          <li><span class="ca">Exercita els dos hemisferis cerebrals</span><span class="es">Ejercita los dos hemisferios cerebrales</span></li>
+          <li><span class="ca">Actua contra la depressió</span><span class="es">Actúa contra la depresión</span></li>
         </ul>
       </div>
+
     </div>
   </div>
 </section>
+
 
 <!-- ── HORARIS ── -->
 <section class="horaris" id="horaris">
   <div class="container">
     <div class="horaris-header">
-      <div class="section-label">📅 Horaris</div>
-      <h2 class="section-title">Quan i on ens trobem</h2>
-      <p class="section-sub" style="margin:0 auto;">
-        Tots els entrenaments es realitzen a la seu del club. Consulta el teu horari i vine a conèixer-nos.
+      <div class="section-eyebrow">
+        <span class="ca">📅 Horaris</span>
+        <span class="es">📅 Horarios</span>
+      </div>
+      <h2 class="section-title">
+        <span class="ca">Quan i on ens trobem</span>
+        <span class="es">Cuándo y dónde nos encontramos</span>
+      </h2>
+      <p class="section-sub">
+        <span class="ca">Tots els entrenaments es realitzen a la seu del club. Consulta el teu horari i vine a conèixer-nos.</span>
+        <span class="es">Todos los entrenamientos se realizan en la sede del club. Consulta tu horario y ven a conocernos.</span>
       </p>
     </div>
 
-    <table class="horaris-table">
-      <thead>
-        <tr>
-          <th>Grup</th>
-          <th>Dilluns</th>
-          <th>Dimarts</th>
-          <th>Dijous</th>
-          <th>Divendres</th>
-          <th>Durada</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="nivel-tag tag-pre">Pre-Benjamí</span></td>
-          <td>–</td>
-          <td>17:00–18:00</td>
-          <td>–</td>
-          <td>17:00–18:00</td>
-          <td>1h</td>
-        </tr>
-        <tr>
-          <td><span class="nivel-tag tag-ben">Benjamí</span></td>
-          <td>17:00–18:30</td>
-          <td>–</td>
-          <td>17:00–18:30</td>
-          <td>–</td>
-          <td>1h 30min</td>
-        </tr>
-        <tr>
-          <td><span class="nivel-tag tag-ale">Aleví</span></td>
-          <td>–</td>
-          <td>18:00–19:30</td>
-          <td>–</td>
-          <td>18:00–19:30</td>
-          <td>1h 30min</td>
-        </tr>
-        <tr>
-          <td><span class="nivel-tag tag-inf">Infantil</span></td>
-          <td>18:30–20:00</td>
-          <td>–</td>
-          <td>18:30–20:00</td>
-          <td>–</td>
-          <td>1h 30min</td>
-        </tr>
-        <tr>
-          <td><span class="nivel-tag tag-club">Club Competitiu</span></td>
-          <td>–</td>
-          <td>19:30–21:30</td>
-          <td>–</td>
-          <td>19:30–21:30</td>
-          <td>2h</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="note-box">
-      ℹ️ <strong>Important:</strong> Els horaris poden variar durant la temporada de torneigs.
-      Segueix-nos a les xarxes socials o consulta el tauler d'avisos per a les últimes actualitzacions.
-      En cas de dubte, contacta'ns a <a href="mailto:escacsmir@gmail.com" style="color:var(--maroon);font-weight:700;">escacsmir@gmail.com</a>.
+    <div class="table-wrap">
+      <table class="horaris-table">
+        <thead>
+          <tr>
+            <th><span class="ca">Grup</span><span class="es">Grupo</span></th>
+            <th><span class="ca">Dilluns</span><span class="es">Lunes</span></th>
+            <th><span class="ca">Dimarts</span><span class="es">Martes</span></th>
+            <th><span class="ca">Dijous</span><span class="es">Jueves</span></th>
+            <th><span class="ca">Divendres</span><span class="es">Viernes</span></th>
+            <th><span class="ca">Durada</span><span class="es">Duración</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="nivel-tag tag-pre"><span class="ca">Pre-Benjamí</span><span class="es">Pre-Benjamín</span></span></td>
+            <td>–</td><td>17:00–18:00</td><td>–</td><td>17:00–18:00</td><td>1h</td>
+          </tr>
+          <tr>
+            <td><span class="nivel-tag tag-ben"><span class="ca">Benjamí</span><span class="es">Benjamín</span></span></td>
+            <td>17:00–18:30</td><td>–</td><td>17:00–18:30</td><td>–</td><td>1h 30min</td>
+          </tr>
+          <tr>
+            <td><span class="nivel-tag tag-ale"><span class="ca">Aleví</span><span class="es">Alevín</span></span></td>
+            <td>–</td><td>18:00–19:30</td><td>–</td><td>18:00–19:30</td><td>1h 30min</td>
+          </tr>
+          <tr>
+            <td><span class="nivel-tag tag-inf"><span class="ca">Infantil</span><span class="es">Infantil</span></span></td>
+            <td>18:30–20:00</td><td>–</td><td>18:30–20:00</td><td>–</td><td>1h 30min</td>
+          </tr>
+          <tr>
+            <td><span class="nivel-tag tag-club"><span class="ca">Club Competitiu</span><span class="es">Club Competitivo</span></span></td>
+            <td>–</td><td>19:30–21:30</td><td>–</td><td>19:30–21:30</td><td>2h</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
-    <span class="proposal-note">
-      <strong>📌 Nota – Horaris:</strong>
-      Substituir per els horaris reals. Es pot afegir un Google Calendar embegut o un PDF descarregable amb el calendari de torneigs anual.
-    </span>
+    <p class="horaris-note">
+      ℹ️ <strong><span class="ca">Important:</span><span class="es">Importante:</span></strong>
+      <span class="ca"> Els horaris poden variar durant la temporada de torneigs. Per a qualsevol dubte, contacta'ns a </span>
+      <span class="es"> Los horarios pueden variar durante la temporada de torneos. Para cualquier duda, contáctanos en </span>
+      <a href="mailto:escacsmir@gmail.com">escacsmir@gmail.com</a>.
+    </p>
   </div>
 </section>
 
-<!-- ── NOTÍCIES ── -->
+
+<!-- ── NOTICIES ── -->
 <section class="noticies" id="noticies">
   <div class="container">
     <div class="noticies-header">
       <div>
-        <div class="section-label">📰 Notícies</div>
-        <h2 class="section-title" style="margin-bottom:0;">Últimes novetats del club</h2>
+        <div class="section-eyebrow">
+          <span class="ca">📰 Notícies</span>
+          <span class="es">📰 Noticias</span>
+        </div>
+        <h2 class="section-title" style="margin-bottom:0;">
+          <span class="ca">Últimes novetats del club</span>
+          <span class="es">Últimas novedades del club</span>
+        </h2>
       </div>
-      <a href="#" class="btn btn-maroon" style="font-size:.85rem;padding:.65rem 1.5rem;">Veure totes →</a>
     </div>
 
     <div class="news-grid">
+
       <div class="news-card">
         <div class="news-thumb">♛</div>
         <div class="news-body">
-          <span class="news-tag">Torneig</span>
-          <h4>Torneig de Primavera – 15 d'abril 2025</h4>
-          <p>Inscripcions obertes per al nostre torneig intern amb categories per edats. Premis per a tots els participants.</p>
-          <a href="#">Llegir més →</a>
+          <span class="news-tag"><span class="ca">Torneig</span><span class="es">Torneo</span></span>
+          <h4><span class="ca">Torneig de Primavera – 15 d'abril 2025</span><span class="es">Torneo de Primavera – 15 de abril 2025</span></h4>
+          <p><span class="ca">Inscripcions obertes per al nostre torneig intern amb categories per edats. Premis per a tots els participants.</span><span class="es">Inscripciones abiertas para nuestro torneo interno con categorías por edades. Premios para todos los participantes.</span></p>
+          <a href="#contacte"><span class="ca">Llegir més →</span><span class="es">Leer más →</span></a>
         </div>
       </div>
-      <div class="news-card">
-        <div class="news-thumb" style="background:linear-gradient(135deg,#3D1C02,#6B3010)">♞</div>
-        <div class="news-body">
-          <span class="news-tag">Resultats</span>
-          <h4>Excel·lents resultats al Campionat Comarcal Sub-12</h4>
-          <p>Tres alumnes del club han pujat al podi del campionat comarcal celebrat el passat cap de setmana.</p>
-          <a href="#">Llegir més →</a>
-        </div>
-      </div>
-      <div class="news-card">
-        <div class="news-thumb" style="background:linear-gradient(135deg,#D4960A,#B07A06)">♝</div>
-        <div class="news-body">
-          <span class="news-tag">Escola</span>
-          <h4>Obrim noves places per al grup Pre-Benjamí</h4>
-          <p>Degut a la gran demanda, obrim un nou grup de pre-benjamins els dimecres a la tarda. Places limitades.</p>
-          <a href="#">Llegir més →</a>
-        </div>
-      </div>
-    </div>
 
-    <span class="proposal-note">
-      <strong>📌 Nota – Notícies:</strong>
-      Aquesta secció es pot gestionar de tres maneres: (1) editant l'HTML manualment, (2) connectant un CMS headless com <code>Sanity.io</code> o <code>Contentful</code> (gratuïts en nivell free), o (3) usant Markdown + Next.js per a un blog senzill. Recomanació: Astro + Markdown per simplicitat màxima amb Vercel.
-    </span>
+      <div class="news-card">
+        <div class="news-thumb" style="background:var(--maroon-d);">♞</div>
+        <div class="news-body">
+          <span class="news-tag"><span class="ca">Resultats</span><span class="es">Resultados</span></span>
+          <h4><span class="ca">Excel·lents resultats al Campionat Comarcal Sub-12</span><span class="es">Excelentes resultados en el Campeonato Comarcal Sub-12</span></h4>
+          <p><span class="ca">Tres alumnes del club han pujat al podi del campionat comarcal celebrat el passat cap de setmana.</span><span class="es">Tres alumnos del club han subido al podio del campeonato comarcal celebrado el pasado fin de semana.</span></p>
+          <a href="#noticies"><span class="ca">Llegir més →</span><span class="es">Leer más →</span></a>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-thumb" style="background:#8A5900;">♝</div>
+        <div class="news-body">
+          <span class="news-tag"><span class="ca">Escola</span><span class="es">Escuela</span></span>
+          <h4><span class="ca">Obrim noves places per al grup Pre-Benjamí</span><span class="es">Abrimos nuevas plazas para el grupo Pre-Benjamín</span></h4>
+          <p><span class="ca">Degut a la gran demanda, obrim un nou grup de pre-benjamins. Places limitades.</span><span class="es">Debido a la gran demanda, abrimos un nuevo grupo de pre-benjamines. Plazas limitadas.</span></p>
+          <a href="#contacte"><span class="ca">Apunta't →</span><span class="es">Apúntate →</span></a>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- ── INSCRIPCIÓ / CONTACTE ── -->
-<section class="inscripcio" id="inscripcio">
+
+<!-- ── NEWSLETTER ── -->
+<section class="newsletter" id="newsletter">
   <div class="container">
-    <div style="text-align:center;margin-bottom:2.5rem;">
-      <div class="section-label">✉ Inscripció i Contacte</div>
-      <h2 class="section-title">Apunta't al Club d'Escacs MiR</h2>
+    <div class="newsletter-inner">
+      <div class="section-eyebrow">
+        <span class="ca">📩 Butlletí</span>
+        <span class="es">📩 Boletín</span>
+      </div>
+      <h2>
+        <span class="ca">Resta al dia de tot el que passa al club</span>
+        <span class="es">Mantente al día de todo lo que pasa en el club</span>
+      </h2>
+      <p>
+        <span class="ca">Torneigs, resultats, nous grups i activitats. Rep les novetats directament al teu correu. Sense spam.</span>
+        <span class="es">Torneos, resultados, nuevos grupos y actividades. Recibe las novedades directamente en tu correo. Sin spam.</span>
+      </p>
+      <!--
+        Activar: afegir action="https://formspree.io/f/CODI" i method="POST"
+        Activate: add action="https://formspree.io/f/CODE" and method="POST"
+      -->
+      <form class="newsletter-form" action="https://formspree.io/f/xblokwej" method="POST">
+        <input type="email" name="email" required
+          placeholder="el-teu-correu@gmail.com / tu-correo@gmail.com"
+          aria-label="Correu electrònic / Correo electrónico" />
+        <button type="submit">
+          <span class="ca">Subscriu-me</span>
+          <span class="es">Suscribirme</span>
+        </button>
+      </form>
+      <p class="newsletter-note">
+        <span class="ca">Pots donar-te de baixa en qualsevol moment.</span>
+        <span class="es">Puedes darte de baja en cualquier momento.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── CONTACTE / INSCRIPCIÓ ── -->
+<section class="contacte" id="contacte">
+  <div class="container">
+    <div class="contacte-header">
+      <div class="section-eyebrow">
+        <span class="ca">✉ Inscripció i Contacte</span>
+        <span class="es">✉ Inscripción y Contacto</span>
+      </div>
+      <h2 class="section-title">
+        <span class="ca">Apunta't al Club d'Escacs MiR</span>
+        <span class="es">Apúntate al Club Ajedrez MiR</span>
+      </h2>
+      <p class="section-sub">
+        <span class="ca">Omple el formulari i et contactarem en menys de 24 hores.</span>
+        <span class="es">Rellena el formulario y te contactaremos en menos de 24 horas.</span>
+      </p>
     </div>
 
-    <div class="inscripcio-inner">
+    <div class="contacte-inner">
+
       <!-- FORM -->
       <div>
-        <p class="form-sub">Omple el formulari i et contactarem en menys de 24 hores per confirmar la plaça i informar-te de les condicions d'inscripció.</p>
-
+        <p class="form-lead">
+          <span class="ca">Omple el formulari i et contactarem en menys de 24 hores per confirmar la plaça i informar-te de les condicions.</span>
+          <span class="es">Rellena el formulario y te contactaremos en menos de 24 horas para confirmar la plaza e informarte de las condiciones.</span>
+        </p>
         <!--
-          IMPLEMENTACIÓ RECOMANADA:
-          Usar Formspree.io (free tier) o Netlify Forms per enviar emails
-          sense necessitar backend. Exemple: action="https://formspree.io/f/XXXXX"
+          Activar Formspree: afegir action="https://formspree.io/f/CODI" i method="POST"
+          To activate Formspree: add action="https://formspree.io/f/CODE" and method="POST"
         -->
-        <form>
+        <form action="https://formspree.io/f/xblokwej" method="POST">
           <div class="form-row">
             <div class="form-group">
-              <label>Nom del nen/a *</label>
-              <input type="text" placeholder="Anna" required />
+              <label><span class="ca">Nom del nen/a *</span><span class="es">Nombre del niño/a *</span></label>
+              <input type="text" name="nom" placeholder="Anna" required />
             </div>
             <div class="form-group">
-              <label>Cognoms *</label>
-              <input type="text" placeholder="García Puig" required />
+              <label><span class="ca">Cognoms *</span><span class="es">Apellidos *</span></label>
+              <input type="text" name="cognoms" placeholder="García Puig" required />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Data de naixement *</label>
-              <input type="date" required />
+              <label><span class="ca">Data de naixement *</span><span class="es">Fecha de nacimiento *</span></label>
+              <input type="date" name="data_naix" required />
             </div>
             <div class="form-group">
-              <label>Grup d'interès *</label>
-              <select required>
-                <option value="">Selecciona...</option>
-                <option>Pre-Benjamí (menys de 8 anys)</option>
-                <option>Benjamí (8–9 anys)</option>
-                <option>Aleví (10–11 anys)</option>
-                <option>Infantil (12–15 anys)</option>
-                <option>Club Competitiu (adults)</option>
+              <label><span class="ca">Grup d'interès *</span><span class="es">Grupo de interés *</span></label>
+              <select name="grup" required>
+                <option value=""><span class="ca">Selecciona...</span><span class="es">Selecciona...</span></option>
+                <option value="pre-benjami">Pre-Benjamí / Pre-Benjamín (&lt;8)</option>
+                <option value="benjami">Benjamí / Benjamín (8–9)</option>
+                <option value="alevi">Aleví / Alevín (10–11)</option>
+                <option value="infantil">Infantil (12–15)</option>
+                <option value="club">Club Competitiu / Competitivo</option>
               </select>
             </div>
           </div>
           <div class="form-group">
-            <label>Nom del pare/mare o tutor *</label>
-            <input type="text" placeholder="Marta Puig" required />
+            <label><span class="ca">Nom del pare/mare o tutor *</span><span class="es">Nombre del padre/madre o tutor *</span></label>
+            <input type="text" name="tutor" placeholder="Marta Puig" required />
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label>Telèfon de contacte *</label>
-              <input type="tel" placeholder="627 83 31 33" required />
+              <label><span class="ca">Telèfon de contacte *</span><span class="es">Teléfono de contacto *</span></label>
+              <input type="tel" name="telefon" placeholder="627 83 31 33" required />
             </div>
             <div class="form-group">
-              <label>Correu electrònic *</label>
-              <input type="email" placeholder="exemple@gmail.com" required />
+              <label><span class="ca">Correu electrònic *</span><span class="es">Correo electrónico *</span></label>
+              <input type="email" name="email" placeholder="exemple@gmail.com" required />
             </div>
           </div>
           <div class="form-group">
-            <label>Experiència prèvia en escacs</label>
-            <select>
-              <option>Cap experiència</option>
-              <option>Conec les regles bàsiques</option>
-              <option>Jugo des de fa 1-2 anys</option>
-              <option>Tinc ELO federatiu</option>
+            <label><span class="ca">Experiència prèvia</span><span class="es">Experiencia previa</span></label>
+            <select name="experiencia">
+              <option value="cap"><span class="ca">Cap experiència</span><span class="es">Ninguna experiencia</span></option>
+              <option value="basica"><span class="ca">Conec les regles bàsiques</span><span class="es">Conozco las reglas básicas</span></option>
+              <option value="1-2anys"><span class="ca">Jugo des de fa 1-2 anys</span><span class="es">Juego desde hace 1-2 años</span></option>
+              <option value="elo"><span class="ca">Tinc ELO federatiu</span><span class="es">Tengo ELO federativo</span></option>
             </select>
           </div>
           <div class="form-group">
-            <label>Comentaris o preguntes</label>
-            <textarea rows="3" placeholder="Escriu aquí qualsevol pregunta..."></textarea>
+            <label><span class="ca">Comentaris o preguntes</span><span class="es">Comentarios o preguntas</span></label>
+            <textarea name="comentaris" rows="3" placeholder="..."></textarea>
           </div>
-          <button type="submit" class="form-submit">Enviar sol·licitud d'inscripció ♟</button>
+          <button type="submit" class="form-submit">
+            <span class="ca">Enviar sol·licitud ♟</span>
+            <span class="es">Enviar solicitud ♟</span>
+          </button>
         </form>
       </div>
 
       <!-- CONTACT INFO -->
       <div class="contact-side">
-        <h3>On trobar-nos</h3>
+        <h3 class="contact-side-title">
+          <span class="ca">On trobar-nos</span>
+          <span class="es">Dónde encontrarnos</span>
+        </h3>
 
         <div class="contact-item">
           <div class="contact-icon">✉</div>
           <div>
-            <h4>Correu electrònic</h4>
-            <p>escacsmir@gmail.com</p>
+            <h4><span class="ca">Correu electrònic</span><span class="es">Correo electrónico</span></h4>
+            <p><a href="mailto:escacsmir@gmail.com">escacsmir@gmail.com</a></p>
           </div>
         </div>
 
         <div class="contact-item">
           <div class="contact-icon">📱</div>
           <div>
-            <h4>WhatsApp / Telèfon</h4>
-            <p>627 83 31 33</p>
+            <h4>WhatsApp / <span class="ca">Telèfon</span><span class="es">Teléfono</span></h4>
+            <p><a href="tel:+34627833133">627 83 31 33</a></p>
           </div>
         </div>
 
         <div class="contact-item">
           <div class="contact-icon">📍</div>
           <div>
-            <h4>Seu del club</h4>
-            <p>Adreça pendent de confirmar</p>
+            <h4><span class="ca">Seu del club</span><span class="es">Sede del club</span></h4>
+            <p><span class="ca">Adreça pendent de confirmar</span><span class="es">Dirección pendiente de confirmar</span></p>
           </div>
         </div>
 
         <div class="contact-item">
           <div class="contact-icon">🕐</div>
           <div>
-            <h4>Horari d'atenció</h4>
-            <p>Dl – Dv, 16:30 – 21:00h</p>
+            <h4><span class="ca">Horari d'atenció</span><span class="es">Horario de atención</span></h4>
+            <p><span class="ca">Dl – Dv, 16:30 – 21:00 h</span><span class="es">L – V, 16:30 – 21:00 h</span></p>
           </div>
         </div>
 
         <div class="map-placeholder">
           🗺
-          <p>Afegir Google Maps embegut</p>
+          <span><span class="ca">Google Maps (per afegir)</span><span class="es">Google Maps (por añadir)</span></span>
         </div>
 
-        <div class="contact-item" style="background:var(--maroon);color:var(--white);">
-          <div class="contact-icon" style="background:rgba(255,255,255,0.2);">♟</div>
+        <div class="contact-item">
+          <div class="contact-icon">♟</div>
           <div>
-            <h4 style="color:rgba(255,255,255,0.7);">Perfil en línia</h4>
-            <p style="color:var(--white);">Club a Lichess · Chess.com</p>
+            <h4><span class="ca">Perfil en línia</span><span class="es">Perfil en línea</span></h4>
+            <p>Lichess · Chess.com</p>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
+
 <!-- ── FOOTER ── -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="brand-name">♞ Club d'Escacs MiR</div>
-      <p>Escola d'escacs i club competitiu. Formem jugadors, però sobretot persones. Vine a conèixer-nos!</p>
-      <div class="social-row">
-        <a href="#" class="social-btn" title="Instagram">📸</a>
-        <a href="#" class="social-btn" title="Facebook">📘</a>
-        <a href="#" class="social-btn" title="YouTube">▶</a>
-        <a href="#" class="social-btn" title="Lichess">♟</a>
+  <div class="container">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <img src="assets/Logo MIR CLUB.png" alt="Club d'Escacs MiR" />
+          <span class="brand-name">
+            <span class="ca">Club d'Escacs MiR</span>
+            <span class="es">Club Ajedrez MiR</span>
+          </span>
+        </div>
+        <p>
+          <span class="ca">Escola d'escacs i club competitiu. Formem jugadors, però sobretot persones.</span>
+          <span class="es">Escuela de ajedrez y club competitivo. Formamos jugadores, pero sobre todo personas.</span>
+        </p>
+        <div class="social-row">
+          <a href="#" class="social-btn" title="Instagram">📸</a>
+          <a href="#" class="social-btn" title="Facebook">📘</a>
+          <a href="#" class="social-btn" title="YouTube">▶</a>
+          <a href="#" class="social-btn" title="Lichess">♟</a>
+        </div>
       </div>
+
+      <div class="footer-col">
+        <h4><span class="ca">Escola</span><span class="es">Escuela</span></h4>
+        <ul>
+          <li><a href="#escola"><span class="ca">Pre-Benjamí</span><span class="es">Pre-Benjamín</span></a></li>
+          <li><a href="#escola"><span class="ca">Benjamí</span><span class="es">Benjamín</span></a></li>
+          <li><a href="#escola"><span class="ca">Aleví</span><span class="es">Alevín</span></a></li>
+          <li><a href="#escola"><span class="ca">Infantil</span><span class="es">Infantil</span></a></li>
+          <li><a href="#contacte"><span class="ca">Inscripció</span><span class="es">Inscripción</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4><span class="ca">Club</span><span class="es">Club</span></h4>
+        <ul>
+          <li><a href="#competicio"><span class="ca">Equips</span><span class="es">Equipos</span></a></li>
+          <li><a href="#horaris"><span class="ca">Horaris</span><span class="es">Horarios</span></a></li>
+          <li><a href="#noticies"><span class="ca">Torneigs</span><span class="es">Torneos</span></a></li>
+          <li><a href="#eines"><span class="ca">Eines</span><span class="es">Herramientas</span></a></li>
+          <li><a href="#newsletter"><span class="ca">Butlletí</span><span class="es">Boletín</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4><span class="ca">Contacte</span><span class="es">Contacto</span></h4>
+        <ul>
+          <li><a href="mailto:escacsmir@gmail.com">escacsmir@gmail.com</a></li>
+          <li><a href="tel:+34627833133">627 83 31 33</a></li>
+          <li><a href="#"><span class="ca">Política de privacitat</span><span class="es">Política de privacidad</span></a></li>
+          <li><a href="#"><span class="ca">Avís legal</span><span class="es">Aviso legal</span></a></li>
+          <li><a href="#"><span class="ca">Cookies</span><span class="es">Cookies</span></a></li>
+        </ul>
+      </div>
+
     </div>
 
-    <div class="footer-col">
-      <h4>Escola</h4>
-      <ul>
-        <li><a href="#escola">Pre-Benjamí</a></li>
-        <li><a href="#escola">Benjamí</a></li>
-        <li><a href="#escola">Aleví</a></li>
-        <li><a href="#escola">Infantil</a></li>
-        <li><a href="#inscripcio">Inscripció</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <span>© 2025 Club d'Escacs MiR · <span class="ca">Tots els drets reservats</span><span class="es">Todos los derechos reservados</span></span>
+      <span><span class="ca">Federat a la </span><span class="es">Federado en la </span><a href="#">Federació Catalana d'Escacs</a></span>
     </div>
-
-    <div class="footer-col">
-      <h4>Club</h4>
-      <ul>
-        <li><a href="#competicio">Equips</a></li>
-        <li><a href="#horaris">Horaris</a></li>
-        <li><a href="#noticies">Torneigs</a></li>
-        <li><a href="#">Resultats</a></li>
-        <li><a href="#">Galeria</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contacte</h4>
-      <ul>
-        <li><a href="mailto:escacsmir@gmail.com">escacsmir@gmail.com</a></li>
-        <li><a href="tel:+34627833133">627 83 31 33</a></li>
-        <li><a href="#">Política de privacitat</a></li>
-        <li><a href="#">Avís legal</a></li>
-        <li><a href="#">Cookies</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <span>© 2025 Club d'Escacs MiR · Tots els drets reservats</span>
-    <span>Federat a la <a href="#">Federació Catalana d'Escacs</a></span>
   </div>
 </footer>
 
+
 <!-- ── FLOATING WHATSAPP ── -->
-<a href="https://wa.me/34627833133" class="whatsapp-float" target="_blank" title="Contacta per WhatsApp">
-  💬
-</a>
+<a href="https://wa.me/34627833133" class="whatsapp-float" target="_blank" rel="noopener"
+   title="WhatsApp">💬</a>
 
 <!-- ── COOKIE BANNER ── -->
 <div class="cookie-banner" id="cookieBanner">
   <p>
-    Usem cookies pròpies i de tercers per millorar la teva experiència.
-    Pots acceptar-les totes o gestionar les teves preferències.
-    <a href="#">Més informació</a>.
+    <span class="ca">Usem cookies per millorar la teva experiència. </span>
+    <span class="es">Usamos cookies para mejorar tu experiencia. </span>
+    <a href="#">
+      <span class="ca">Més informació</span>
+      <span class="es">Más información</span>
+    </a>.
   </p>
   <div class="cookie-buttons">
-    <button class="cookie-decline" onclick="document.getElementById('cookieBanner').style.display='none'">Només necessàries</button>
-    <button class="cookie-accept"  onclick="document.getElementById('cookieBanner').style.display='none'">Acceptar totes</button>
+    <button class="cookie-decline">
+      <span class="ca">Només necessàries</span>
+      <span class="es">Solo necesarias</span>
+    </button>
+    <button class="cookie-accept">
+      <span class="ca">Acceptar totes</span>
+      <span class="es">Aceptar todas</span>
+    </button>
   </div>
 </div>
 
 <script src="js/main.js" defer></script>
-
 </body>
 </html>

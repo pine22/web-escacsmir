@@ -1,50 +1,73 @@
 /* ── HORARIS ── */
 .horaris {
-  padding: 5rem 1.5rem;
+  padding: var(--sec-py) 0;
   background: var(--white);
 }
-.horaris-header { text-align: center; margin-bottom: 3rem; }
+
+.horaris-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.horaris-header .section-sub { margin: 0 auto; }
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-s);
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
 .horaris-table {
   width: 100%;
   border-collapse: collapse;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
+  min-width: 580px;
 }
-.horaris-table thead tr { background: var(--maroon); color: var(--white); }
+.horaris-table thead tr { background: var(--maroon); }
 .horaris-table th {
-  padding: 1rem 1.2rem;
+  padding: .9rem 1.1rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: .85rem;
+  font-size: .78rem;
   font-weight: 700;
+  color: var(--white);
   text-align: left;
-  letter-spacing: .05em;
+  letter-spacing: .06em;
+  white-space: nowrap;
 }
 .horaris-table td {
-  padding: .85rem 1.2rem;
-  font-size: .88rem;
-  border-bottom: 1px solid #f0f0f0;
+  padding: .8rem 1.1rem;
+  font-size: .87rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
 }
-.horaris-table tr:nth-child(even) td { background: var(--cream); }
-.horaris-table tr:hover td { background: var(--cream-d); }
+.horaris-table tr:last-child td { border-bottom: none; }
+.horaris-table tbody tr:nth-child(even) td { background: var(--bg); }
+.horaris-table tbody tr:hover td { background: var(--cream); }
+
+/* Level tags */
 .nivel-tag {
   display: inline-block;
   padding: .2rem .65rem;
   border-radius: 50px;
-  font-size: .75rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .72rem;
   font-weight: 700;
+  white-space: nowrap;
 }
-.tag-pre  { background: #FFDCC8; color: #C9531A; }
-.tag-ben  { background: #FFF0B8; color: #9A6200; }
-.tag-ale  { background: #FFDCDC; color: var(--maroon); }
-.tag-inf  { background: #E8D5FF; color: #5A1A7A; }
-.tag-club { background: #DCF0FF; color: #1A4A7A; }
-.note-box {
+.tag-pre  { background: #FFE6D0; color: #C9531A; }
+.tag-ben  { background: var(--cream); color: #8A5900; }
+.tag-ale  { background: #FFE0E0; color: var(--maroon); }
+.tag-inf  { background: #EAD9FF; color: #5A1A7A; }
+.tag-club { background: #D0E8FF; color: #1A4A7A; }
+
+/* Info note */
+.horaris-note {
   background: var(--cream);
   border-left: 4px solid var(--gold);
   border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 1rem 1.2rem;
-  font-size: .88rem;
-  color: #555;
+  padding: 1rem 1.25rem;
+  font-size: .87rem;
+  color: var(--text-m);
+  line-height: 1.6;
 }
+.horaris-note a { color: var(--maroon); font-weight: 700; }
