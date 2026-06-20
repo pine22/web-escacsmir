@@ -64,13 +64,17 @@
         }
 
         .club-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.8em;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-            color: rgba(255,255,255,0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .club-logo {
+            height: 48px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            opacity: 0.90;
         }
 
         header h1 {
@@ -366,7 +370,9 @@
 <body>
     <div class="container">
         <header>
-            <div class="club-name">Club d'Escacs MiR</div>
+            <div class="club-name">
+                <img src="../Logo MIR CLUB.png" alt="Club d'Escacs MiR" class="club-logo" />
+            </div>
             <h1>⚔️ Calculadora d'ELO</h1>
             <p>Calcula el canvi d'ELO en torneigs amb el mètode FIDE</p>
         </header>
