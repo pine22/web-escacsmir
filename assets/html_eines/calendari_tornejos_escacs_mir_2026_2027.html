@@ -72,20 +72,20 @@ function buildMsg(){
     .filter(Boolean)
     .sort((a,b)=>a.start.localeCompare(b.start));
 
-  let m = ‘*CALENDARI TORNEJOS ESCOLA I CLUB MiR 2026-2027*\n’;
-  m += ‘- - - - - - - - - - - - - - - - -\n\n’;
-  m += ‘*Tornejos seleccionats (‘ + list.length + ‘):*\n\n’;
+  let m = "*CALENDARI TORNEJOS ESCOLA I CLUB MiR 2026-2027*\n";
+  m += "- - - - - - - - - - - - - - - - -\n\n";
+  m += "*Tornejos seleccionats (" + list.length + "):*\n\n";
 
   list.forEach((e,i)=>{
-    m += (i+1) + ‘. *’ + e.nom + ‘*\n’;
-    m += ‘   • ‘ + e.dia + ‘\n’;
-    m += ‘   • ‘ + e.lloc + ‘\n’;
-    m += ‘   • ‘ + e.hora + ‘ · ‘ + e.ritme + ‘\n’;
-    m += ‘   • ‘ + e.jugadors + ‘ jugadors aprox.\n’;
-    m += ‘   • ‘ + e.etiquetes.join(‘, ‘) + ‘\n\n’;
+    m += (i+1) + ". *" + e.nom + "*\n";
+    m += "   • " + e.dia + "\n";
+    m += "   • " + e.lloc + "\n";
+    m += "   • " + e.hora + " · " + e.ritme + "\n";
+    m += "   • " + e.jugadors + " jugadors aprox.\n";
+    m += "   • " + e.etiquetes.join(", ") + "\n\n";
   });
 
-  m += ‘_Club i Escola d\’Escacs MiR_’;
+  m += "_Club i Escola d’Escacs MiR_";
   return m.trim();
 }
 function openModal(){if(!sel.size)return;const m=buildMsg();document.getElementById('msg').textContent=m;document.getElementById('walink').href='https://wa.me/?text='+encodeURIComponent(m);document.getElementById('modal').classList.add('on')}
