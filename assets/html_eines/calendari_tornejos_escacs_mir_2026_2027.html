@@ -72,7 +72,7 @@ function buildMsg(){
     .filter(Boolean)
     .sort((a,b)=>a.start.localeCompare(b.start));
 
-  let m = '♟️ *CALENDARI TORNEJOS ESCOLA I CLUB MiR 2026-2027* ♟️\n';
+  let m = '♟ *CALENDARI TORNEJOS ESCOLA I CLUB MiR 2026-2027* ♟\n';
   m += '━━━━━━━━━━━━━━━━━━━━\n\n';
   m += '📋 *Tornejos seleccionats (' + list.length + '):*\n\n';
 
@@ -82,7 +82,7 @@ function buildMsg(){
     m += '   📍 ' + e.lloc + '\n';
     m += '   🕒 ' + e.hora + ' · ' + e.ritme + '\n';
     m += '   👥 ' + e.jugadors + ' jugadors aprox.\n';
-    m += '   🏷️ ' + e.etiquetes.join(', ') + '\n\n';
+    m += '   📌 ' + e.etiquetes.join(', ') + '\n\n';
   });
 
   m += 'Club i Escola d’Escacs MiR';
