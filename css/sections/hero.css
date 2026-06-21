@@ -2,31 +2,9 @@
 .hero {
   background: var(--maroon);
   color: var(--white);
+  padding: 72px 0 64px;
   position: relative;
   overflow: hidden;
-}
-
-/* Banner image */
-.hero-banner {
-  width: 100%;
-  line-height: 0;
-  overflow: hidden;
-  max-height: 340px;
-}
-
-.hero-banner-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  max-height: 340px;
-  object-fit: cover;
-  object-position: center top;
-}
-
-/* Content below banner */
-.hero-inner {
-  padding-top: 52px;
-  padding-bottom: 56px;
 }
 
 /* Subtle chess pattern accent */
@@ -45,8 +23,10 @@
 }
 
 .hero-inner {
-  display: block;
-  max-width: 760px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: center;
 }
 
 /* Left: content */
@@ -134,7 +114,7 @@
 }
 
 @media (max-width: 768px) {
-  .hero-banner { max-height: 180px; }
-  .hero-banner-img { max-height: 180px; }
-  .hero-inner { padding-top: 36px; padding-bottom: 40px; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-visual { display: none; }
+  .hero { padding: 56px 0 48px; }
 }
