@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificador de Estudio · Escacs MiR</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        /* ============================================================
+           VARIABLES DE MARCA — Escacs MiR
+           ============================================================ */
+        :root {
+            --rojo:        #C62828;
+            --rojo-osc:    #7B0000;
+            --rojo-claro:  #EF5350;
+            --oro:         #E6A817;
+            --oro-osc:     #B8860B;
+            --oro-claro:   #FFD54F;
+            --negro:       #1A1A1A;
+            --negro-2:     #2D2D2D;
+            --negro-3:     #3A3A3A;
+            --gris-osc:    #555;
+            --gris-med:    #888;
+            --gris-cla:    #E0E0E0;
+            --blanco:      #FFFFFF;
+            --fondo:       #F5F2ED;
+
+            /* Cuadrantes */
+            --q1: #B71C1C;
+            --q2: #1565C0;
+            --q3: #E65100;
+            --q4: #37474F;
+
+            --q1-fondo: #FFEBEE;
+            --q2-fondo: #E3F2FD;
+            --q3-fondo: #FFF3E0;
+            --q4-fondo: #ECEFF1;
+
+            --radius: 8px;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--negro);
+            min-height: 100vh;
+            color: var(--negro);
+            line-height: 1.4;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            background: linear-gradient(130deg, var(--rojo-osc) 0%, var(--negro) 55%);
+            color: var(--blanco);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border-bottom: 3px solid var(--oro);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo {
+            height: 64px;
+            width: auto;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+        }
+
+        .header-info { flex: 1; }
+
+        .header-info h1 {
+            font-size: 1.45em;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            line-height: 1.2;
+        }
+
+        .header-info h1 span { color: var(--oro); }
+
+        .header-info p {
+            font-size: 0.82em;
+            opacity: 0.72;
+            margin-top: 3px;
+        }
+
+        .header-user {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .user-badge {
+            background: var(--oro);
+            color: var(--negro);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.85em;
+            letter-spacing: 0.2px;
+        }
+
+        .storage-badge {
+            font-size: 0.72em;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .storage-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #FF9800;
+            flex-shrink: 0;
+            transition: background 0.4s;
+        }
+
+        .btn-change-user {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(255,255,255,0.6);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.72em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-change-user:hover { border-color: var(--oro); color: var(--oro); }
+
+        /* ============================================================
+           TOOLBAR
+           ============================================================ */
+        .toolbar {
+            background: var(--negro-2);
+            padding: 8px 24px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--negro-3);
+        }
+
+        .toolbar-sep {
+            color: var(--negro-3);
+            font-size: 1.4em;
+            margin: 0 4px;
+        }
+
+        /* ============================================================
+           CONTROLS / FORMULARIO
+           ============================================================ */
+        .controls {
+            background: var(--fondo);
+            padding: 18px 24px;
+            border-bottom: 2px solid var(--gris-cla);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-field.fw { flex: 1; min-width: 200px; }
+        .form-field.md { min-width: 140px; }
+        .form-field.sm { min-width: 100px; }
+        .form-field.xs { min-width: 80px; }
+
+        .form-field label {
+            font-size: 0.7em;
+            font-weight: 700;
+            color: var(--gris-osc);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            padding: 8px 11px;
+            border: 2px solid var(--gris-cla);
+            border-radius: var(--radius);
+            font-size: 13.5px;
+            background: var(--blanco);
+            color: var(--negro);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: var(--rojo);
+            box-shadow: 0 0 0 3px rgba(198,40,40,0.1);
+        }
+
+        .form-field textarea { resize: vertical; min-height: 56px; }
+
+        /* ============================================================
+           BOTONES
+           ============================================================ */
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.18s;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn:hover { filter: brightness(0.88); transform: translateY(-1px); }
+        .btn:active { transform: translateY(0); filter: brightness(0.82); }
+
+        .btn-primary  { background: var(--rojo);    color: var(--blanco); }
+        .btn-oro      { background: var(--oro);      color: var(--negro);  }
+        .btn-dark     { background: var(--negro-3);  color: var(--blanco); }
+        .btn-verde    { background: #2E7D32;          color: var(--blanco); }
+        .btn-peligro  { background: var(--rojo);     color: var(--blanco); }
+        .btn-outline  {
+            background: transparent;
+            color: var(--gris-osc);
+            border: 2px solid var(--gris-cla);
+        }
+        .btn-outline:hover { border-color: var(--rojo); color: var(--rojo); filter: none; }
+
+        .btn-sm { padding: 5px 10px; font-size: 12px; }
+
+        /* ============================================================
+           ESTADÍSTICAS
+           ============================================================ */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            background: var(--negro);
+            border-bottom: 3px solid var(--oro);
+        }
+
+        .stat-card {
+            padding: 14px 16px;
+            text-align: center;
+            border-right: 1px solid var(--negro-2);
+            color: var(--blanco);
+        }
+
+        .stat-card:last-child { border-right: none; }
+
+        .stat-num {
+            font-size: 1.9em;
+            font-weight: 900;
+            color: var(--oro);
+            line-height: 1;
+        }
+
+        .stat-lbl {
+            font-size: 0.68em;
+            opacity: 0.65;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           MATRIX
+           ============================================================ */
+        .matrix-wrapper {
+            background: var(--fondo);
+            padding: 14px 20px 24px;
+        }
+
+        .matrix-legend {
+            display: flex;
+            align-items: stretch;
+            gap: 10px;
+        }
+
+        .axis-y {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            font-size: 0.65em;
+            font-weight: 800;
+            color: var(--gris-med);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            justify-content: space-between;
+            flex-shrink: 0;
+            padding: 36px 0 0;
+        }
+
+        .matrix-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .axis-x {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65em;
+            font-weight: 800;
+            color: var(--gris-med);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0 4px;
+        }
+
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* ============================================================
+           CUADRANTES
+           ============================================================ */
+        .quadrant {
+            background: var(--blanco);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            min-height: 260px;
+        }
+
+        .q-header {
+            padding: 12px 14px;
+            color: var(--blanco);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .q-icon { font-size: 1.3em; flex-shrink: 0; }
+
+        .q-text .q-title {
+            font-weight: 800;
+            font-size: 0.88em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .q-text .q-sub {
+            font-size: 0.68em;
+            opacity: 0.82;
+            margin-top: 1px;
+        }
+
+        .q-badge {
+            margin-left: auto;
+            background: rgba(255,255,255,0.22);
+            border-radius: 12px;
+            padding: 2px 9px;
+            font-size: 0.78em;
+            font-weight: 800;
+        }
+
+        .quadrant-q1 .q-header { background: var(--q1); }
+        .quadrant-q2 .q-header { background: var(--q2); }
+        .quadrant-q3 .q-header { background: var(--q3); }
+        .quadrant-q4 .q-header { background: var(--q4); }
+
+        .q-body {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 380px;
+        }
+
+        .empty-msg {
+            text-align: center;
+            color: var(--gris-med);
+            font-size: 0.82em;
+            padding: 24px 12px;
+            font-style: italic;
+        }
+
+        /* ============================================================
+           TARJETAS DE TAREA
+           ============================================================ */
+        .task {
+            border: 1px solid var(--gris-cla);
+            border-left: 4px solid;
+            border-radius: 6px;
+            padding: 10px 11px;
+            margin-bottom: 8px;
+            transition: box-shadow 0.2s, transform 0.15s;
+            background: var(--fondo);
+        }
+
+        .task:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.1); transform: translateX(2px); }
+        .task.done  { opacity: 0.5; }
+        .task.done .task-name { text-decoration: line-through; color: var(--gris-med); }
+
+        .quadrant-q1 .task { border-left-color: var(--q1); }
+        .quadrant-q2 .task { border-left-color: var(--q2); }
+        .quadrant-q3 .task { border-left-color: var(--q3); }
+        .quadrant-q4 .task { border-left-color: var(--q4); }
+
+        .task-name {
+            font-weight: 700;
+            font-size: 0.92em;
+            color: var(--negro);
+            margin-bottom: 6px;
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+        }
+
+        .badge {
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-size: 0.67em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .badge-topic  { background: #E8EAF6; color: #303F9F; }
+        .badge-level  { background: #F3E5F5; color: #7B1FA2; }
+        .badge-time   { background: #E8F5E9; color: #2E7D32; }
+
+        .task-dates {
+            font-size: 0.7em;
+            color: var(--gris-med);
+            display: flex;
+            gap: 12px;
+            margin-bottom: 7px;
+        }
+
+        .task-notes {
+            font-size: 0.74em;
+            color: var(--gris-osc);
+            font-style: italic;
+            border-top: 1px solid var(--gris-cla);
+            padding-top: 5px;
+            margin-bottom: 7px;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================
+           MODALES
+           ============================================================ */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            z-index: 500;
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.activo { display: flex; }
+
+        .modal-box {
+            background: var(--blanco);
+            border-radius: 14px;
+            padding: 28px;
+            width: 94%;
+            max-width: 520px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+            animation: modalIn 0.22s ease;
+            max-height: 92vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95) translateY(-20px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--gris-cla);
+        }
+
+        .modal-title {
+            font-size: 1.15em;
+            font-weight: 800;
+            color: var(--negro);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.6em;
+            cursor: pointer;
+            color: var(--gris-med);
+            line-height: 1;
+            padding: 0 4px;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover { color: var(--rojo); }
+
+        .modal-form { display: flex; flex-direction: column; gap: 13px; }
+
+        /* Modal de bienvenida */
+        .welcome-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .welcome-logo img {
+            height: 90px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+        }
+
+        .welcome-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .welcome-title h2 {
+            font-size: 1.35em;
+            font-weight: 900;
+            color: var(--negro);
+            margin-bottom: 4px;
+        }
+
+        .welcome-title h2 span { color: var(--rojo); }
+
+        .welcome-title p {
+            font-size: 0.84em;
+            color: var(--gris-osc);
+        }
+
+        .info-box {
+            background: #FFF8E1;
+            border: 1px solid var(--oro-claro);
+            border-radius: var(--radius);
+            padding: 10px 14px;
+            font-size: 0.8em;
+            color: #5D4037;
+        }
+
+        /* ============================================================
+           TOASTS
+           ============================================================ */
+        #toasts {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            pointer-events: none;
+        }
+
+        .toast {
+            background: var(--negro);
+            color: var(--blanco);
+            padding: 11px 16px;
+            border-radius: var(--radius);
+            font-size: 0.88em;
+            font-weight: 600;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+            border-left: 4px solid var(--oro);
+            max-width: 310px;
+            animation: toastIn 0.28s ease;
+            transition: opacity 0.28s;
+        }
+
+        .toast.exito  { border-left-color: #4CAF50; }
+        .toast.error  { border-left-color: var(--rojo-claro); }
+        .toast.info   { border-left-color: var(--oro); }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(110%); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            background: var(--negro);
+            color: #555;
+            text-align: center;
+            padding: 12px;
+            font-size: 0.72em;
+            border-top: 1px solid var(--negro-3);
+        }
+
+        .footer strong { color: var(--oro); }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 860px) {
+            .matrix-grid { grid-template-columns: 1fr; }
+            .axis-y { display: none; }
+            .stats { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .header { flex-wrap: wrap; gap: 10px; }
+            .header-user { align-items: flex-start; }
+            .form-row { flex-direction: column; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .toolbar { gap: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================
+     TOASTS
+     ============================================================ -->
+<div id="toasts"></div>
+
+<!-- ============================================================
+     MODAL BIENVENIDA
+     ============================================================ -->
+<div class="modal-overlay activo" id="modalBienvenida">
+    <div class="modal-box">
+        <div class="welcome-logo">
+            <img src="../logo escola transp.png" alt="Escacs MiR">
+        </div>
+        <div class="welcome-title">
+            <h2>Planificador de <span>Estudio</span></h2>
+            <p>Organiza tu entrenamiento de ajedrez con la metodología Eisenhower</p>
+        </div>
+        <div class="modal-form">
+            <div class="form-field">
+                <label>Tu nombre de jugador</label>
+                <input type="text" id="inputNombre" placeholder="Ej: Garry, Magnus, Judith…" maxlength="40">
+            </div>
+            <div class="info-box">
+                💾 Tus tareas se guardan automáticamente en este navegador. En la barra de herramientas puedes conectar un archivo JSON en tu PC para almacenamiento transparente y portable.
+            </div>
+            <button class="btn btn-primary" onclick="iniciarSesion()" style="width:100%; justify-content:center; padding:11px;">
+                ♟ Comenzar entrenamiento
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+     MODAL EDITAR TAREA
+     ============================================================ -->
+<div class="modal-overlay" id="modalEditar">
+    <div class="modal-box">
+        <div class="modal-header">
+            <span class="modal-title">✏️ Editar tarea</span>
+            <button class="modal-close" onclick="cerrarModalEditar()">×</button>
+        </div>
+        <div class="modal-form">
+            <div class="form-field">
+                <label>Nombre / descripción</label>
+                <input type="text" id="editNombre">
+            </div>
+            <div class="form-row">
+                <div class="form-field" style="flex:1">
+                    <label>Cuadrante</label>
+                    <select id="editCuadrante">
+                        <option value="q1">🎯 Preparación Urgente</option>
+                        <option value="q2">📚 Estudio Programado</option>
+                        <option value="q3">⚡ Práctica Diaria</option>
+                        <option value="q4">📋 Referencia</option>
+                    </select>
+                </div>
+                <div class="form-field" style="flex:1">
+                    <label>Tema</label>
+                    <select id="editTema">
+                        <option value="aperturas">♟ Aperturas</option>
+                        <option value="tactica">⚡ Táctica</option>
+                        <option value="finales">🏁 Finales</option>
+                        <option value="estrategia">🧠 Estrategia</option>
+                        <option value="analisis">🔍 Análisis</option>
+                        <option value="psicologia">🎯 Psicología</option>
+                        <option value="general">📚 General</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-field" style="flex:1">
+                    <label>Nivel</label>
+                    <select id="editNivel">
+                        <option value="basico">Básico</option>
+                        <option value="intermedio">Intermedio</option>
+                        <option value="avanzado">Avanzado</option>
+                        <option value="experto">Experto</option>
+                    </select>
+                </div>
+                <div class="form-field sm">
+                    <label>Tiempo (min)</label>
+                    <input type="number" id="editTiempo" min="5" max="600" placeholder="30">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-field" style="flex:1">
+                    <label>Fecha inicio</label>
+                    <input type="date" id="editInicio">
+                </div>
+                <div class="form-field" style="flex:1">
+                    <label>Fecha fin</label>
+                    <input type="date" id="editFin">
+                </div>
+            </div>
+            <div class="form-field">
+                <label>Notas (variantes, recursos, referencias…)</label>
+                <textarea id="editNotas" placeholder="Ej: Revisar partidas de Tal, cap.7 del libro…"></textarea>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:4px;">
+                <button class="btn btn-primary" onclick="guardarEdicion()" style="flex:1; justify-content:center;">💾 Guardar cambios</button>
+                <button class="btn btn-outline" onclick="cerrarModalEditar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================
+     APP PRINCIPAL
+     ============================================================ -->
+<div id="app" style="display:none;">
+
+    <!-- HEADER -->
+    <header class="header">
+        <img src="../logo escola transp.png" alt="Escacs MiR" class="header-logo">
+        <div class="header-info">
+            <h1>Planificador de Estudio · <span>Escacs MiR</span></h1>
+            <p>Matriz de prioridades para el entrenamiento de ajedrez</p>
+        </div>
+        <div class="header-user">
+            <span class="user-badge" id="userBadge">♟ Jugador</span>
+            <span class="storage-badge">
+                <span class="storage-dot" id="storageDot"></span>
+                <span id="storageLabel">Guardado en navegador</span>
+            </span>
+            <button class="btn-change-user" onclick="cambiarUsuario()">Cambiar usuario</button>
+        </div>
+    </header>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+        <button class="btn btn-dark btn-sm" onclick="conectarArchivoLocal()" id="btnConectar"
+                title="Vincula un archivo .json en tu PC — Chrome / Edge">
+            📂 Conectar archivo local
+        </button>
+        <span class="toolbar-sep">|</span>
+        <button class="btn btn-dark btn-sm" onclick="exportarJSON()">⬇ Exportar JSON</button>
+        <button class="btn btn-dark btn-sm" onclick="importarJSON()">⬆ Importar JSON</button>
+        <input type="file" id="inputImportar" accept=".json" style="display:none" onchange="manejarImport(event)">
+        <button class="btn btn-oro btn-sm" onclick="exportarExcel()">📊 Exportar Excel</button>
+        <button class="btn btn-outline btn-sm" onclick="limpiarCompletadas()"
+                style="margin-left:auto; color:rgba(255,255,255,0.5); border-color:rgba(255,255,255,0.15);">
+            🗑 Limpiar completadas
+        </button>
+    </div>
+
+    <!-- CONTROLES / AÑADIR TAREA -->
+    <div class="controls">
+        <div class="form-row">
+            <div class="form-field fw">
+                <label>Tarea / tema de estudio</label>
+                <input type="text" id="taskNombre" placeholder="Ej: Estudiar Najdorf 6.Bg5 · 50 puzzles de táctica · Finales de torres…">
+            </div>
+            <div class="form-field md">
+                <label>Cuadrante</label>
+                <select id="taskCuadrante">
+                    <option value="q1">🎯 Preparación Urgente</option>
+                    <option value="q2">📚 Estudio Programado</option>
+                    <option value="q3">⚡ Práctica Diaria</option>
+                    <option value="q4">📋 Referencia</option>
+                </select>
+            </div>
+            <div class="form-field md">
+                <label>Tema</label>
+                <select id="taskTema">
+                    <option value="aperturas">♟ Aperturas</option>
+                    <option value="tactica">⚡ Táctica</option>
+                    <option value="finales">🏁 Finales</option>
+                    <option value="estrategia">🧠 Estrategia</option>
+                    <option value="analisis">🔍 Análisis</option>
+                    <option value="psicologia">🎯 Psicología</option>
+                    <option value="general">📚 General</option>
+                </select>
+            </div>
+            <div class="form-field sm">
+                <label>Nivel</label>
+                <select id="taskNivel">
+                    <option value="basico">Básico</option>
+                    <option value="intermedio" selected>Intermedio</option>
+                    <option value="avanzado">Avanzado</option>
+                    <option value="experto">Experto</option>
+                </select>
+            </div>
+            <div class="form-field xs">
+                <label>Tiempo (min)</label>
+                <input type="number" id="taskTiempo" min="5" max="600" value="30" placeholder="30">
+            </div>
+            <div class="form-field sm">
+                <label>Inicio</label>
+                <input type="date" id="taskInicio">
+            </div>
+            <div class="form-field sm">
+                <label>Fin</label>
+                <input type="date" id="taskFin">
+            </div>
+            <button class="btn btn-primary" onclick="agregarTarea()" style="align-self:flex-end;">
+                ➕ Añadir
+            </button>
+        </div>
+    </div>
+
+    <!-- ESTADÍSTICAS -->
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-num" id="statTotal">0</div>
+            <div class="stat-lbl">Tareas totales</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num" id="statPendientes">0</div>
+            <div class="stat-lbl">En progreso</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num" id="statCompletadas">0</div>
+            <div class="stat-lbl">Completadas</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num" id="statHoras">0h</div>
+            <div class="stat-lbl">Tiempo planificado</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num" id="statUrgentes">0</div>
+            <div class="stat-lbl">Urgentes</div>
+        </div>
+    </div>
+
+    <!-- MATRIZ -->
+    <div class="matrix-wrapper">
+        <div class="matrix-legend">
+
+            <!-- Eje Y -->
+            <div class="axis-y">
+                <span>NO IMPORTANTE</span>
+                <span>IMPORTANTE</span>
+            </div>
+
+            <div class="matrix-right">
+                <!-- Eje X -->
+                <div class="axis-x">
+                    <span>← URGENTE</span>
+                    <span>NO URGENTE →</span>
+                </div>
+
+                <!-- Grid 2×2 -->
+                <div class="matrix-grid">
+
+                    <!-- Q1: Urgente + Importante -->
+                    <div class="quadrant quadrant-q1">
+                        <div class="q-header">
+                            <span class="q-icon">🎯</span>
+                            <div class="q-text">
+                                <div class="q-title">Preparación Urgente</div>
+                                <div class="q-sub">Torneo próximo · Debilidades críticas</div>
+                            </div>
+                            <span class="q-badge" id="cnt-q1">0</span>
+                        </div>
+                        <div class="q-body" id="tareas-q1">
+                            <div class="empty-msg">Sin tareas urgentes e importantes</div>
+                        </div>
+                    </div>
+
+                    <!-- Q2: No urgente + Importante -->
+                    <div class="quadrant quadrant-q2">
+                        <div class="q-header">
+                            <span class="q-icon">📚</span>
+                            <div class="q-text">
+                                <div class="q-title">Estudio Programado</div>
+                                <div class="q-sub">Repertorio · Técnica · Largo plazo</div>
+                            </div>
+                            <span class="q-badge" id="cnt-q2">0</span>
+                        </div>
+                        <div class="q-body" id="tareas-q2">
+                            <div class="empty-msg">Sin estudio programado</div>
+                        </div>
+                    </div>
+
+                    <!-- Q3: Urgente + No importante -->
+                    <div class="quadrant quadrant-q3">
+                        <div class="q-header">
+                            <span class="q-icon">⚡</span>
+                            <div class="q-text">
+                                <div class="q-title">Práctica Diaria</div>
+                                <div class="q-sub">Puzzles · Rutina · Mantenimiento</div>
+                            </div>
+                            <span class="q-badge" id="cnt-q3">0</span>
+                        </div>
+                        <div class="q-body" id="tareas-q3">
+                            <div class="empty-msg">Sin tareas de práctica diaria</div>
+                        </div>
+                    </div>
+
+                    <!-- Q4: No urgente + No importante -->
+                    <div class="quadrant quadrant-q4">
+                        <div class="q-header">
+                            <span class="q-icon">📋</span>
+                            <div class="q-text">
+                                <div class="q-title">Referencia</div>
+                                <div class="q-sub">Libros · Historia · Enriquecimiento</div>
+                            </div>
+                            <span class="q-badge" id="cnt-q4">0</span>
+                        </div>
+                        <div class="q-body" id="tareas-q4">
+                            <div class="empty-msg">Sin material de referencia</div>
+                        </div>
+                    </div>
+
+                </div><!-- /matrix-grid -->
+            </div><!-- /matrix-right -->
+        </div><!-- /matrix-legend -->
+    </div><!-- /matrix-wrapper -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <strong>Escacs MiR</strong> &middot; Planificador de Estudio d'Escacs
+        &middot; Todos los datos se guardan localmente en tu dispositivo
+    </footer>
+
+</div><!-- /app -->
+
+
+<script>
+/* ================================================================
+   ESTADO GLOBAL
+   ================================================================ */
+let tareas       = [];
+let usuarioActual = '';
+let fileHandle   = null;
+let editandoId   = null;
+
+const FS_OK = ('showOpenFilePicker' in window);
+
+const TEMAS = {
+    aperturas:  'Aperturas',
+    tactica:    'Táctica',
+    finales:    'Finales',
+    estrategia: 'Estrategia',
+    analisis:   'Análisis',
+    psicologia: 'Psicología',
+    general:    'General'
+};
+
+const NIVELES = {
+    basico:     'Básico',
+    intermedio: 'Intermedio',
+    avanzado:   'Avanzado',
+    experto:    'Experto'
+};
+
+const CAT_NOMBRES = {
+    q1: 'Preparación Urgente',
+    q2: 'Estudio Programado',
+    q3: 'Práctica Diaria',
+    q4: 'Referencia'
+};
+
+const CUADRANTES = ['q1', 'q2', 'q3', 'q4'];
+
+/* ================================================================
+   ARRANQUE
+   ================================================================ */
+window.addEventListener('DOMContentLoaded', () => {
+    fijarFechasDefecto();
+    const userGuardado = localStorage.getItem('escacsMir_usuario');
+    if (userGuardado) {
+        usuarioActual = userGuardado;
+        cargarTareas();
+        lanzarApp();
+        intentarRestaurarHandle();
+    }
+    // Si no hay usuario, el modal de bienvenida queda visible
+});
+
+function iniciarSesion() {
+    const input = document.getElementById('inputNombre');
+    const nombre = input.value.trim();
+    if (!nombre) {
+        input.focus();
+        toast('Introduce tu nombre de jugador', 'error');
+        return;
+    }
+    usuarioActual = nombre;
+    localStorage.setItem('escacsMir_usuario', nombre);
+    cargarTareas();
+    lanzarApp();
+    intentarRestaurarHandle();
+}
+
+function lanzarApp() {
+    document.getElementById('modalBienvenida').classList.remove('activo');
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('userBadge').textContent = '♟ ' + usuarioActual;
+    renderizar();
+}
+
+function cambiarUsuario() {
+    document.getElementById('inputNombre').value = usuarioActual;
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('modalBienvenida').classList.add('activo');
+}
+
+/* ================================================================
+   CRUD DE TAREAS
+   ================================================================ */
+function agregarTarea() {
+    const nombre    = document.getElementById('taskNombre').value.trim();
+    const cuadrante = document.getElementById('taskCuadrante').value;
+    const tema      = document.getElementById('taskTema').value;
+    const nivel     = document.getElementById('taskNivel').value;
+    const tiempo    = parseInt(document.getElementById('taskTiempo').value) || 0;
+    const inicio    = document.getElementById('taskInicio').value;
+    const fin       = document.getElementById('taskFin').value;
+
+    if (!nombre) { toast('Escribe el nombre de la tarea', 'error'); return; }
+    if (!inicio || !fin) { toast('Selecciona las fechas de inicio y fin', 'error'); return; }
+    if (new Date(inicio) > new Date(fin)) {
+        toast('La fecha de inicio no puede ser posterior a la de fin', 'error'); return;
+    }
+
+    const tarea = {
+        id: Date.now(),
+        nombre, cuadrante, tema, nivel, tiempo, inicio, fin,
+        notas: '',
+        completada: false,
+        creadaEn: new Date().toISOString()
+    };
+
+    tareas.push(tarea);
+    persistir();
+    renderizar();
+    limpiarFormulario();
+    toast('✅ Tarea añadida', 'exito');
+}
+
+function eliminarTarea(id) {
+    if (!confirm('¿Eliminar esta tarea?')) return;
+    tareas = tareas.filter(t => t.id !== id);
+    persistir();
+    renderizar();
+    toast('Tarea eliminada', 'info');
+}
+
+function toggleTarea(id) {
+    const t = tareas.find(t => t.id === id);
+    if (!t) return;
+    t.completada = !t.completada;
+    persistir();
+    renderizar();
+}
+
+function abrirModalEditar(id) {
+    const t = tareas.find(t => t.id === id);
+    if (!t) return;
+    editandoId = id;
+
+    document.getElementById('editNombre').value    = t.nombre;
+    document.getElementById('editCuadrante').value = t.cuadrante;
+    document.getElementById('editTema').value      = t.tema;
+    document.getElementById('editNivel').value     = t.nivel;
+    document.getElementById('editTiempo').value    = t.tiempo || '';
+    document.getElementById('editInicio').value    = t.inicio;
+    document.getElementById('editFin').value       = t.fin;
+    document.getElementById('editNotas').value     = t.notas || '';
+
+    document.getElementById('modalEditar').classList.add('activo');
+}
+
+function cerrarModalEditar() {
+    document.getElementById('modalEditar').classList.remove('activo');
+    editandoId = null;
+}
+
+function guardarEdicion() {
+    const nombre = document.getElementById('editNombre').value.trim();
+    const inicio = document.getElementById('editInicio').value;
+    const fin    = document.getElementById('editFin').value;
+
+    if (!nombre || !inicio || !fin) {
+        toast('Completa los campos obligatorios', 'error'); return;
+    }
+    if (new Date(inicio) > new Date(fin)) {
+        toast('La fecha de inicio no puede ser posterior a la de fin', 'error'); return;
+    }
+
+    const idx = tareas.findIndex(t => t.id === editandoId);
+    if (idx === -1) return;
+
+    tareas[idx] = {
+        ...tareas[idx],
+        nombre,
+        cuadrante: document.getElementById('editCuadrante').value,
+        tema:      document.getElementById('editTema').value,
+        nivel:     document.getElementById('editNivel').value,
+        tiempo:    parseInt(document.getElementById('editTiempo').value) || 0,
+        inicio, fin,
+        notas: document.getElementById('editNotas').value.trim()
+    };
+
+    persistir();
+    renderizar();
+    cerrarModalEditar();
+    toast('✏️ Tarea actualizada', 'exito');
+}
+
+function limpiarCompletadas() {
+    const n = tareas.filter(t => t.completada).length;
+    if (n === 0) { toast('No hay tareas completadas', 'info'); return; }
+    if (!confirm(`¿Eliminar las ${n} tareas completadas?`)) return;
+    tareas = tareas.filter(t => !t.completada);
+    persistir();
+    renderizar();
+    toast(`${n} tareas eliminadas`, 'exito');
+}
+
+/* ================================================================
+   RENDERIZADO
+   ================================================================ */
+function renderizar() {
+    const vacios = {
+        q1: 'Añade aquí preparación urgente (torneo en puerta, debilidades explotadas…)',
+        q2: 'Añade aquí tu estudio sistemático a largo plazo',
+        q3: 'Añade aquí tu rutina de práctica diaria (puzzles, partidas rápidas…)',
+        q4: 'Añade aquí material de referencia y lecturas opcionales'
+    };
+
+    CUADRANTES.forEach(cat => {
+        const contenedor = document.getElementById('tareas-' + cat);
+        const lista = tareas.filter(t => t.cuadrante === cat);
+        document.getElementById('cnt-' + cat).textContent = lista.length;
+
+        if (lista.length === 0) {
+            contenedor.innerHTML = `<div class="empty-msg">${vacios[cat]}</div>`;
+            return;
+        }
+        contenedor.innerHTML = lista.map(htmlTarea).join('');
+    });
+
+    actualizarStats();
+}
+
+function htmlTarea(t) {
+    const doneClass  = t.completada ? 'done' : '';
+    const btnTexto   = t.completada ? '↩ Reabrir' : '✓ Listo';
+    const btnClase   = t.completada ? 'btn-outline' : 'btn-verde';
+    const tiempoHtml = t.tiempo
+        ? `<span class="badge badge-time">⏱ ${t.tiempo} min</span>` : '';
+    const notasHtml = t.notas
+        ? `<div class="task-notes">${esc(t.notas)}</div>` : '';
+
+    return `<div class="task ${doneClass}" id="task-${t.id}">
+        <div class="task-name">${esc(t.nombre)}</div>
+        <div class="task-meta">
+            <span class="badge badge-topic">${TEMAS[t.tema] || t.tema}</span>
+            <span class="badge badge-level">${NIVELES[t.nivel] || t.nivel}</span>
+            ${tiempoHtml}
+        </div>
+        <div class="task-dates">
+            <span>Inicio: ${fmtFecha(t.inicio)}</span>
+            <span>Fin: ${fmtFecha(t.fin)}</span>
+        </div>
+        ${notasHtml}
+        <div class="task-actions">
+            <button class="btn btn-sm ${btnClase}" onclick="toggleTarea(${t.id})">${btnTexto}</button>
+            <button class="btn btn-sm btn-dark" onclick="abrirModalEditar(${t.id})">✏ Editar</button>
+            <button class="btn btn-sm btn-peligro" onclick="eliminarTarea(${t.id})">✕</button>
+        </div>
+    </div>`;
+}
+
+function actualizarStats() {
+    const completadas = tareas.filter(t => t.completada).length;
+    const pendientes  = tareas.length - completadas;
+    const mins        = tareas.reduce((s, t) => s + (t.tiempo || 0), 0);
+    const horas       = mins >= 60
+        ? (mins / 60).toFixed(1).replace('.0', '') + 'h'
+        : (mins > 0 ? mins + 'min' : '0h');
+    const urgentes    = tareas.filter(t => t.cuadrante === 'q1' || t.cuadrante === 'q3').length;
+
+    document.getElementById('statTotal').textContent       = tareas.length;
+    document.getElementById('statPendientes').textContent  = pendientes;
+    document.getElementById('statCompletadas').textContent = completadas;
+    document.getElementById('statHoras').textContent       = horas;
+    document.getElementById('statUrgentes').textContent    = urgentes;
+}
+
+/* ================================================================
+   ALMACENAMIENTO — localStorage (base)
+   ================================================================ */
+function claveStorage() {
+    return 'escacsMir_tareas_' + usuarioActual.toLowerCase().replace(/\s+/g, '_');
+}
+
+function guardarEnLocal() {
+    try {
+        localStorage.setItem(claveStorage(), JSON.stringify(tareas));
+    } catch(e) {
+        console.warn('localStorage write error:', e);
+    }
+}
+
+function cargarTareas() {
+    try {
+        const raw = localStorage.getItem(claveStorage());
+        tareas = raw ? JSON.parse(raw) : [];
+    } catch(e) {
+        tareas = [];
+    }
+}
+
+/* ================================================================
+   ALMACENAMIENTO — persistir (local + archivo si hay handle)
+   ================================================================ */
+async function persistir() {
+    guardarEnLocal();
+    if (fileHandle) {
+        try {
+            await escribirArchivo(fileHandle);
+        } catch(e) {
+            console.warn('File write error:', e);
+            actualizarUIStorage(false);
+        }
+    }
+}
+
+/* ================================================================
+   ALMACENAMIENTO — File System Access API
+   ================================================================ */
+async function conectarArchivoLocal() {
+    if (!FS_OK) {
+        toast('Tu navegador no soporta archivos locales.\nUsa Chrome/Edge o exporta/importa JSON.', 'error');
+        return;
+    }
+
+    const opts = {
+        types: [{
+            description: 'Tareas Escacs MiR (JSON)',
+            accept: { 'application/json': ['.json'] }
+        }]
+    };
+
+    const elegirExistente = confirm(
+        '¿Tienes ya un archivo de tareas?\n\n' +
+        'OK     →  Abrir archivo existente (carga las tareas)\n' +
+        'Cancelar →  Crear nuevo archivo'
+    );
+
+    try {
+        let handle;
+
+        if (elegirExistente) {
+            [handle] = await window.showOpenFilePicker({ ...opts, multiple: false });
+
+            // Intentar leer tareas del archivo
+            try {
+                const file  = await handle.getFile();
+                const texto = await file.text();
+                const datos = JSON.parse(texto);
+                if (Array.isArray(datos) && datos.length > 0) {
+                    if (confirm(`El archivo tiene ${datos.length} tareas. ¿Cargarlas? (reemplazará las actuales)`)) {
+                        tareas = datos;
+                        guardarEnLocal();
+                        renderizar();
+                        toast(`✅ ${datos.length} tareas cargadas`, 'exito');
+                    }
+                }
+            } catch(e) {
+                // Archivo vacío o sin JSON válido — usaremos el handle para futuros guardados
+            }
+            fileHandle = handle;
+
+        } else {
+            handle = await window.showSaveFilePicker({
+                ...opts,
+                suggestedName: `escacsMir_${usuarioActual.replace(/\s+/g,'_')}.json`
+            });
+            fileHandle = handle;
+        }
+
+        await guardarHandleIDB(fileHandle);
+        await escribirArchivo(fileHandle);
+        actualizarUIStorage(true, fileHandle.name);
+        toast(`📂 Conectado: ${fileHandle.name}`, 'exito');
+
+    } catch(e) {
+        if (e.name !== 'AbortError') toast('No se pudo acceder al archivo', 'error');
+    }
+}
+
+async function escribirArchivo(handle) {
+    let permiso = await handle.queryPermission({ mode: 'readwrite' });
+    if (permiso !== 'granted') {
+        permiso = await handle.requestPermission({ mode: 'readwrite' });
+    }
+    if (permiso !== 'granted') throw new Error('Permiso denegado');
+
+    const writable = await handle.createWritable();
+    await writable.write(JSON.stringify(tareas, null, 2));
+    await writable.close();
+}
+
+async function intentarRestaurarHandle() {
+    if (!FS_OK) return;
+    try {
+        const handle = await leerHandleIDB();
+        if (!handle) return;
+        const permiso = await handle.queryPermission({ mode: 'readwrite' });
+        fileHandle = handle;
+        if (permiso === 'granted') {
+            actualizarUIStorage(true, handle.name);
+        } else {
+            // Pedir permiso la próxima vez que se guarde
+            actualizarUIStorage(false, `${handle.name} (sin permiso aún)`);
+        }
+    } catch(e) {
+        /* fallo silencioso */
+    }
+}
+
+/* ================================================================
+   IndexedDB — persistencia del FileHandle entre recargas
+   ================================================================ */
+function abrirIDB() {
+    return new Promise((resolve, reject) => {
+        const req = indexedDB.open('EscacsMirDB', 1);
+        req.onupgradeneeded = e => e.target.result.createObjectStore('handles');
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror   = () => reject(req.error);
+    });
+}
+
+async function guardarHandleIDB(handle) {
+    const db = await abrirIDB();
+    return new Promise(resolve => {
+        const tx = db.transaction('handles', 'readwrite');
+        tx.objectStore('handles').put(handle, 'archivo_' + usuarioActual);
+        tx.oncomplete = resolve;
+    });
+}
+
+async function leerHandleIDB() {
+    const db = await abrirIDB();
+    return new Promise(resolve => {
+        const tx  = db.transaction('handles', 'readonly');
+        const req = tx.objectStore('handles').get('archivo_' + usuarioActual);
+        req.onsuccess = () => resolve(req.result || null);
+        req.onerror   = () => resolve(null);
+    });
+}
+
+function actualizarUIStorage(conectado, etiqueta) {
+    const dot = document.getElementById('storageDot');
+    const lbl = document.getElementById('storageLabel');
+    if (conectado) {
+        dot.style.background = '#4CAF50';
+        lbl.textContent = etiqueta ? `📂 ${etiqueta}` : 'Guardado en archivo local';
+    } else {
+        dot.style.background = '#FF9800';
+        lbl.textContent = etiqueta || 'Guardado en navegador';
+    }
+}
+
+/* ================================================================
+   IMPORTAR / EXPORTAR
+   ================================================================ */
+function exportarJSON() {
+    if (tareas.length === 0) { toast('No hay tareas para exportar', 'error'); return; }
+    const blob = new Blob([JSON.stringify(tareas, null, 2)], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = Object.assign(document.createElement('a'), {
+        href: url,
+        download: `EscacsMiR_${usuarioActual}_${hoy()}.json`
+    });
+    a.click();
+    URL.revokeObjectURL(url);
+    toast('JSON exportado', 'exito');
+}
+
+function importarJSON() {
+    document.getElementById('inputImportar').click();
+}
+
+function manejarImport(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+        try {
+            const datos = JSON.parse(ev.target.result);
+            if (!Array.isArray(datos)) throw new Error();
+            if (!confirm(`¿Importar ${datos.length} tareas?\nEsto reemplazará las tareas actuales de "${usuarioActual}".`)) return;
+            tareas = datos;
+            persistir();
+            renderizar();
+            toast(`✅ ${datos.length} tareas importadas`, 'exito');
+        } catch(_) {
+            toast('Archivo JSON inválido', 'error');
+        }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+}
+
+function exportarExcel() {
+    if (tareas.length === 0) { toast('No hay tareas para exportar', 'error'); return; }
+
+    const datos = tareas.map(t => ({
+        'Jugador':         usuarioActual,
+        'Tarea':           t.nombre,
+        'Cuadrante':       CAT_NOMBRES[t.cuadrante] || t.cuadrante,
+        'Tema':            TEMAS[t.tema] || t.tema,
+        'Nivel':           NIVELES[t.nivel] || t.nivel,
+        'Tiempo (min)':    t.tiempo || '',
+        'Fecha inicio':    t.inicio,
+        'Fecha fin':       t.fin,
+        'Notas':           t.notas || '',
+        'Estado':          t.completada ? 'Completada' : 'Pendiente',
+        'Creada':          (t.creadaEn || '').slice(0, 10)
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(datos);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Estudio Escacs MiR');
+    XLSX.writeFile(wb, `EscacsMiR_${usuarioActual}_${hoy()}.xlsx`);
+    toast('📊 Excel exportado', 'exito');
+}
+
+/* ================================================================
+   UTILIDADES
+   ================================================================ */
+function fmtFecha(str) {
+    if (!str) return '—';
+    return new Date(str + 'T12:00:00').toLocaleDateString('es-ES');
+}
+
+function hoy() {
+    return new Date().toISOString().slice(0, 10);
+}
+
+function fijarFechasDefecto() {
+    const t  = hoy();
+    const s  = new Date();
+    s.setDate(s.getDate() + 7);
+    const s7 = s.toISOString().slice(0, 10);
+    document.getElementById('taskInicio').value = t;
+    document.getElementById('taskFin').value    = s7;
+}
+
+function limpiarFormulario() {
+    document.getElementById('taskNombre').value    = '';
+    document.getElementById('taskCuadrante').value = 'q1';
+    document.getElementById('taskTema').value      = 'aperturas';
+    document.getElementById('taskNivel').value     = 'intermedio';
+    document.getElementById('taskTiempo').value    = '30';
+    fijarFechasDefecto();
+}
+
+function esc(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+/* ================================================================
+   NOTIFICACIONES
+   ================================================================ */
+function toast(msg, tipo = 'info') {
+    const div = document.createElement('div');
+    div.className = `toast ${tipo}`;
+    div.textContent = msg;
+    document.getElementById('toasts').appendChild(div);
+    setTimeout(() => {
+        div.style.opacity = '0';
+        setTimeout(() => div.remove(), 300);
+    }, 3200);
+}
+
+/* ================================================================
+   EVENTOS GLOBALES
+   ================================================================ */
+document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.activeElement.id === 'taskNombre') agregarTarea();
+    if (e.key === 'Escape') cerrarModalEditar();
+});
+
+document.getElementById('modalEditar').addEventListener('click', function(e) {
+    if (e.target === this) cerrarModalEditar();
+});
+
+// Deshabilitar botón de archivo local si el navegador no lo soporta
+if (!FS_OK) {
+    const btn = document.getElementById('btnConectar');
+    btn.style.opacity = '0.4';
+    btn.title = 'No disponible en Firefox. Usa Chrome/Edge o exporta/importa JSON.';
+}
+</script>
+</body>
+</html>
