@@ -1,6 +1,6 @@
-# Club d'Escacs MiR – Web oficial
+# Escola i Club d'Escacs MiR – Web oficial
 
-Lloc web oficial del **Club d'Escacs MiR** ([escacsmir.com](https://escacsmir.com)).  
+Lloc web oficial de l'**Escola i Club d'Escacs MiR** ([escacsmir.com](https://escacsmir.com)).
 Landing page estàtica en HTML/CSS/JS, desplegada a **Vercel** i versionada amb **Git + GitHub**.
 
 ---

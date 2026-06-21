@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Projecte
 
-Landing page estàtica del **Club d'Escacs MiR** (`escacsmir.com`). HTML/CSS/JS pur, sense framework ni build step. Desplegat a Vercel des de GitHub — cada `git push` a `main` redesplega automàticament en ~30 segons.
+Landing page estàtica de l'**Escola i Club d'Escacs MiR** (`escacsmir.com`). HTML/CSS/JS pur, sense framework ni build step. Desplegat a Vercel des de GitHub — cada `git push` a `main` redesplega automàticament en ~30 segons.
 
 ## Servidor local
 
