@@ -114,6 +114,11 @@
   color: var(--white);
   flex-shrink: 0;
 }
+.contact-icon-svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
 .contact-item h4 {
   font-size: .78rem;
   font-weight: 700;
