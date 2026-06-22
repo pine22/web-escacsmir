@@ -157,6 +157,14 @@
   color: var(--text-m);
   font-family: 'Montserrat', sans-serif;
 }
+.map-embed {
+  height: 220px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.map-embed iframe {
+  transform: translateY(-95px);
+}
 
 @media (max-width: 768px) {
   .contacte-inner { grid-template-columns: 1fr; }
