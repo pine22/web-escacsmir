@@ -435,7 +435,9 @@ function openModal(){
   const msg=buildMsg();
   document.getElementById("wab").innerHTML=renderBub(msg);
   document.getElementById("msub").textContent=sel.size+" torneig"+(sel.size!==1?"s":"")+" seleccionat"+(sel.size!==1?"s":"");
-  document.getElementById("btnSnd").href="https://wa.me/?text="+encodeURIComponent(msg);
+  const encoded=encodeURIComponent(msg);
+  const isMobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  document.getElementById("btnSnd").href=(isMobile?"https://wa.me/?text=":"https://web.whatsapp.com/send?text=")+encoded;
   document.getElementById("ovl").classList.add("on");
   document.body.style.overflow="hidden";
 }
