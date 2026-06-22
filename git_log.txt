@@ -1,0 +1,3 @@
+201e26a fix: logo MiR visible sobre fons blanc a la calculadora ELO
+5cf3f6a feat: afegeix logo MiR a la capçalera de la calculadora ELO
+1d5ddbe feat: adapta calculadora ELO i Circuit Català a identitat gràfica MiR

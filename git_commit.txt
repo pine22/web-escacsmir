@@ -1,0 +1,2 @@
+[main 1d5ddbe] feat: adapta calculadora ELO i Circuit Català a identitat gràfica MiR
+ 2 files changed, 162 insertions(+), 64 deletions(-)

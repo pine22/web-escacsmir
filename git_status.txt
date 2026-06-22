@@ -1,0 +1,10 @@
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   assets/html_eines/calculadora-elo-v4-1.html
+	modified:   assets/html_eines/circuit_catala_2026_v4.html
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	git_status.txt
+
