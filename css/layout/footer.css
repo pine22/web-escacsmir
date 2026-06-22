@@ -41,6 +41,11 @@ footer {
   font-size: .9rem;
   transition: background .18s;
 }
+.social-icon-svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
 .social-btn:hover { background: var(--gold); color: var(--dark); }
 
 .footer-col h4 {
