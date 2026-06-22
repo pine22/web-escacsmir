@@ -19,7 +19,7 @@ footer {
   gap: .6rem;
   margin-bottom: .75rem;
 }
-.footer-brand .brand-logo img { height: 36px; filter: brightness(0) invert(1); opacity: .85; }
+.footer-brand .brand-logo img { height: 36px; opacity: 1; }
 .footer-brand .brand-name {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
