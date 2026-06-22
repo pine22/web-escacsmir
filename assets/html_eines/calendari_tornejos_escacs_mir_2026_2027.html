@@ -72,22 +72,22 @@ function buildMsg(){
     .filter(Boolean)
     .sort((a,b)=>a.start.localeCompare(b.start));
 
-  let m = "*CALENDARI TORNEJOS ESCOLA I CLUB MiR 2026-2027*\n";
-  m += "- - - - - - - - - - - - - - - - -\n\n";
-  m += "*Tornejos seleccionats (" + list.length + "):*\n\n";
+  let m = "\u265f *CALENDARI TORNEJOS ESCOLA I CLUB MiR 2026-2027* \u265f\n";
+  m += "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n";
+  m += "\uD83D\uDCCB *Tornejos seleccionats (" + list.length + "):*\n\n";
 
   list.forEach((e,i)=>{
-    m += (i+1) + ". *" + e.nom + "*\n";
-    m += "   • " + e.dia + "\n";
-    m += "   • " + e.lloc + "\n";
-    m += "   • " + e.hora + " · " + e.ritme + "\n";
-    m += "   • " + e.jugadors + " jugadors aprox.\n";
-    m += "   • " + e.etiquetes.join(", ") + "\n\n";
+    m += (i+1) + ". \uD83C\uDFC6 *" + e.nom + "*\n";
+    m += "   \uD83D\uDCC5 " + e.dia + "\n";
+    m += "   \uD83D\uDCCD " + e.lloc + "\n";
+    m += "   \uD83C\uDFAF " + e.hora + " - " + e.ritme + "\n";
+    m += "   \uD83D\uDC65 " + e.jugadors + " jugadors aprox.\n";
+    m += "   \uD83C\uDFF7\uFE0F " + e.etiquetes.join(", ") + "\n\n";
   });
 
   m += "_Club i Escola d’Escacs MiR_";
   return m.trim();
 }
-function openModal(){if(!sel.size)return;const m=buildMsg();document.getElementById('msg').textContent=m;document.getElementById('walink').href='https://wa.me/?text='+encodeURIComponent(m);document.getElementById('modal').classList.add('on')}
+function openModal(){if(!sel.size)return;const m=buildMsg();document.getElementById('msg').textContent=m;const encoded=encodeURIComponent(m);const isMobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);document.getElementById('walink').href=(isMobile?'https://wa.me/?text=':'https://web.whatsapp.com/send?text=')+encoded;document.getElementById('modal').classList.add('on')}
 function closeModal(){document.getElementById('modal').classList.remove('on')}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});render();</script></body></html>
