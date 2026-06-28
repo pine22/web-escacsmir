@@ -7,9 +7,23 @@
 
 .competicio-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: minmax(140px, 190px) minmax(0, 1fr) minmax(320px, 1fr);
+  gap: 2.5rem;
   align-items: center;
+}
+
+.competicio-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+}
+
+.competicio-logo img {
+  width: 100%;
+  max-width: 190px;
+  height: auto;
+  object-fit: contain;
 }
 
 .competicio .section-eyebrow {
@@ -71,6 +85,7 @@
   line-height: 1.4;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .competicio-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .competicio-logo img { max-width: 170px; }
 }
