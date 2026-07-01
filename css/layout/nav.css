@@ -40,7 +40,7 @@ nav.scrolled { box-shadow: var(--shadow-s); }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  gap: 1rem;
 }
 .nav-links a {
   font-family: 'Montserrat', sans-serif;
@@ -50,6 +50,7 @@ nav.scrolled { box-shadow: var(--shadow-s); }
   letter-spacing: .03em;
   transition: color .18s;
   position: relative;
+  white-space: nowrap;
 }
 .nav-links a::after {
   content: '';

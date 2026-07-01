@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/sections/competicio.css" />
   <link rel="stylesheet" href="css/sections/beneficis.css" />
   <link rel="stylesheet" href="css/sections/horaris.css" />
+  <link rel="stylesheet" href="css/sections/movem-peca.css" />
   <link rel="stylesheet" href="css/sections/contacte.css" />
   <link rel="stylesheet" href="css/sections/overlays.css" />
 </head>
@@ -52,6 +53,7 @@
       <li><a href="beneficis.html"><span class="ca">Beneficis</span><span class="es">Beneficios</span></a></li>
       <li><a href="xarxes.html"><span class="ca">Xarxes</span><span class="es">Redes</span></a></li>
       <li><a href="#horaris"><span class="ca">Horaris</span><span class="es">Horarios</span></a></li>
+      <li><a href="#movem-peca">Movem Peça</a></li>
       <li><a href="#contacte"><span class="ca">Contacte</span><span class="es">Contacto</span></a></li>
     </ul>
 
@@ -82,6 +84,7 @@
     <li><a href="beneficis.html"><span class="ca">Beneficis</span><span class="es">Beneficios</span></a></li>
     <li><a href="xarxes.html"><span class="ca">Xarxes</span><span class="es">Redes</span></a></li>
     <li><a href="#horaris"><span class="ca">Horaris</span><span class="es">Horarios</span></a></li>
+    <li><a href="#movem-peca">Movem Peça</a></li>
     <li><a href="#contacte"><span class="ca">Contacte</span><span class="es">Contacto</span></a></li>
   </ul>
   <a href="#contacte" class="btn btn-maroon">
@@ -587,6 +590,118 @@
 
 
 <!-- ── CONTACTE / INSCRIPCIÓ ── -->
+<!-- MOVEM PEÇA -->
+<section class="movem-peca" id="movem-peca">
+  <div class="container">
+    <div class="movem-peca-header">
+      <div class="section-eyebrow">Movem Peça</div>
+      <h2 class="section-title">
+        <span class="ca">Escacs que eduquen i connecten</span>
+        <span class="es">Ajedrez que educa y conecta</span>
+      </h2>
+      <p class="section-sub">
+        <span class="ca">Consulta la presentació del projecte MOVEM PEÇA i contacta amb nosaltres si vols portar-lo a la teva escola o entitat.</span>
+        <span class="es">Consulta la presentación del proyecto MOVEM PEÇA y contacta con nosotros si quieres llevarlo a tu escuela o entidad.</span>
+      </p>
+    </div>
+
+    <div class="pdf-viewer">
+      <iframe
+        src="assets/presentacio-movem-peca.pdf#toolbar=1&navpanes=0&view=FitH"
+        title="Presentació del projecte MOVEM PEÇA"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <p class="pdf-fallback">
+      <span class="ca">Si el visor no es mostra, </span>
+      <span class="es">Si el visor no se muestra, </span>
+      <a href="assets/presentacio-movem-peca.pdf" target="_blank" rel="noopener">
+        <span class="ca">obre la presentació en una pestanya nova</span>
+        <span class="es">abre la presentación en una pestaña nueva</span>
+      </a>.
+    </p>
+
+    <div class="movem-contact">
+      <button
+        class="btn btn-maroon movem-contact-toggle"
+        id="movemContactToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="movemContactForm"
+      >
+        <span class="ca">Contacte</span>
+        <span class="es">Contacto</span>
+      </button>
+
+      <div class="movem-form-wrap" id="movemContactForm" hidden>
+        <form action="https://formspree.io/f/mlgypgpg" method="POST" id="movemForm">
+          <input type="hidden" name="_subject" value="Consulta sobre MOVEM PEÇA" />
+          <input class="form-honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="movemInterested">
+                <span class="ca">Persona, escola o entitat interessada</span>
+                <span class="es">Persona, escuela o entidad interesada</span>
+              </label>
+              <input id="movemInterested" name="persona_o_escola" type="text" required />
+            </div>
+            <div class="form-group">
+              <label for="movemContactName">
+                <span class="ca">Persona de contacte</span>
+                <span class="es">Persona de contacto</span>
+              </label>
+              <input id="movemContactName" name="persona_de_contacte" type="text" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="movemEmail">
+                <span class="ca">Correu de resposta</span>
+                <span class="es">Correo de respuesta</span>
+              </label>
+              <input id="movemEmail" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="form-group">
+              <label for="movemSubject">
+                <span class="ca">Assumpte</span>
+                <span class="es">Asunto</span>
+              </label>
+              <input id="movemSubject" name="assumpte" type="text" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="movemMessage">
+              <span class="ca">Missatge</span>
+              <span class="es">Mensaje</span>
+            </label>
+            <textarea id="movemMessage" name="missatge" rows="6" required aria-describedby="movemWordCount"></textarea>
+            <p class="word-count" id="movemWordCount" aria-live="polite">
+              <span id="movemWordNumber">0</span>/100
+              <span class="ca">paraules</span>
+              <span class="es">palabras</span>
+            </p>
+          </div>
+
+          <label class="movem-privacy">
+            <input type="checkbox" name="accepta_privacitat" value="Sí" required />
+            <span class="ca">He llegit i accepto la <a href="politica-privacitat.html">política de privacitat</a>.</span>
+            <span class="es">He leído y acepto la <a href="politica-privacitat.html">política de privacidad</a>.</span>
+          </label>
+
+          <button class="form-submit" type="submit">
+            <span class="ca">Enviar consulta</span>
+            <span class="es">Enviar consulta</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section class="contacte" id="contacte">
   <div class="container">
     <div class="contacte-header">

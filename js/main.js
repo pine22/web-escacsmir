@@ -66,6 +66,55 @@ document.querySelectorAll('.nav-mobile a').forEach(link => {
 });
 
 // ── Cookie banner ────────────────────────────────────────────────────────────
+// MOVEM PEÇA contact form
+const movemContactToggle = document.getElementById('movemContactToggle');
+const movemContactForm = document.getElementById('movemContactForm');
+const movemForm = document.getElementById('movemForm');
+const movemMessage = document.getElementById('movemMessage');
+const movemWordNumber = document.getElementById('movemWordNumber');
+const movemWordCount = document.getElementById('movemWordCount');
+
+movemContactToggle?.addEventListener('click', () => {
+  const isOpen = movemContactToggle.getAttribute('aria-expanded') === 'true';
+  movemContactToggle.setAttribute('aria-expanded', String(!isOpen));
+  movemContactForm.hidden = isOpen;
+
+  if (!isOpen) {
+    movemContactForm.querySelector('.form-group input')?.focus();
+  }
+});
+
+function countWords(value) {
+  const text = value.trim();
+  return text ? text.split(/\s+/).length : 0;
+}
+
+function validateMovemMessage() {
+  if (!movemMessage) return true;
+
+  const words = countWords(movemMessage.value);
+  const isOver = words > 100;
+  movemWordNumber.textContent = words;
+  movemWordCount.classList.toggle('is-over', isOver);
+  movemMessage.setCustomValidity(
+    isOver
+      ? (document.body.classList.contains('lang-es')
+        ? 'El mensaje no puede superar las 100 palabras.'
+        : 'El missatge no pot superar les 100 paraules.')
+      : ''
+  );
+  return !isOver;
+}
+
+movemMessage?.addEventListener('input', validateMovemMessage);
+movemForm?.addEventListener('submit', event => {
+  if (!validateMovemMessage()) {
+    event.preventDefault();
+    movemMessage.reportValidity();
+    movemMessage.focus();
+  }
+});
+
 const banner = document.getElementById('cookieBanner');
 if (banner) {
   if (localStorage.getItem('mir-cookies')) {

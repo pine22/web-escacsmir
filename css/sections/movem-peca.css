@@ -1,0 +1,116 @@
+/* MOVEM PEÇA */
+.movem-peca {
+  padding: var(--sec-py) 0;
+  background: var(--bg);
+}
+
+.movem-peca-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.movem-peca-header .section-sub {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.pdf-viewer {
+  width: 100%;
+  height: min(76vh, 760px);
+  min-height: 540px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow-s);
+}
+
+.pdf-viewer iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.pdf-fallback {
+  margin-top: .75rem;
+  text-align: center;
+  color: var(--text-m);
+  font-size: .82rem;
+}
+
+.pdf-fallback a {
+  color: var(--maroon);
+  font-weight: 700;
+}
+
+.movem-contact {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.movem-contact-toggle[aria-expanded="true"] {
+  background: var(--maroon-d);
+}
+
+.movem-form-wrap {
+  max-width: 760px;
+  margin: 1.5rem auto 0;
+  padding: 1.5rem;
+  text-align: left;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-s);
+}
+
+.movem-form-wrap[hidden] {
+  display: none;
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+}
+
+.word-count {
+  margin-top: .35rem;
+  color: var(--text-m);
+  font-size: .78rem;
+  text-align: right;
+}
+
+.word-count.is-over {
+  color: var(--maroon);
+  font-weight: 700;
+}
+
+.movem-privacy {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  margin: .25rem 0 1rem;
+  color: var(--text-m);
+  font-size: .82rem;
+  line-height: 1.5;
+}
+
+.movem-privacy input {
+  margin-top: .2rem;
+  accent-color: var(--maroon);
+}
+
+.movem-privacy a {
+  color: var(--maroon);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .pdf-viewer {
+    height: 68vh;
+    min-height: 430px;
+  }
+
+  .movem-form-wrap {
+    padding: 1.2rem;
+  }
+}
